@@ -3,13 +3,23 @@ ActiveAdmin.register Tenant do
                 :passport_series, :who_issued_the_passport, :when_issued_the_passport, :the_taxpayer_identification_number,
                 :phone_number, :login_code, :user_id
 
+
   index do
     selectable_column
-    id_column
-    column :email
-    column :current_sign_in_at
-    column :sign_in_count
-    column :created_at
+    column :id
+    column :room do |t|
+      if room = t.tenant_orders.where(order_status: 'ordered')&.first.room
+        link_to "#{room.block.number} #{room.room_type == 'small' ? '2м' : '3м'}", admin_room_path(room)
+      end
+    end
+    column :tenant do |t|
+      [t.last_name, t.first_name, t.surname].join(' ')
+    end
+    column :user do |t|
+      if t = t.user
+        link_to [t.last_name, t.first_name, t.surname].join(' '), admin_user_path(t)
+      end
+    end
     actions
   end
 
@@ -86,5 +96,7 @@ ActiveAdmin.register Tenant do
   end
 
 
-
+  action_item :view, only: :show do
+    link_to 'Create order', new_admin_tenant_order_path(tenant_id: tenant.id), method: :get
+  end
 end

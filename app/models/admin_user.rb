@@ -1,21 +1,15 @@
-class User < ApplicationRecord
+class AdminUser < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable, :trackable
-
-  enum account_status: [ :fresh, :completed ]
-
-  before_create :check_exists_tenant_information
+  devise :database_authenticatable, 
+         :recoverable, :rememberable, :validatable, :trackable
 
   attr_accessor :login
-
-  has_one :tenant
 
   def self.find_for_database_authentication warden_conditions
     conditions = warden_conditions.dup
     login = conditions.delete(:login)
-    where(conditions).where(["lower(login_code) = :value OR lower(email) = :value", {value: login.strip.downcase}]).first
+    where(conditions).where(["lower(email) = :value", {value: login.strip.downcase}]).first
   end
 
   protected
@@ -57,10 +51,6 @@ class User < ApplicationRecord
   end
 
   def self.find_record login
-    where(["login_code = :value OR email = :value", {value: login}]).first
-  end
-
-  def check_exists_tenant_information
-    UpdateTenantInformation.new(self).process
+    where(["email = :value", {value: login}]).first
   end
 end

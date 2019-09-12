@@ -30,5 +30,44 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
-  hello2: "Hello world32"
+  hello: "Привіт"
+  layouts:
+    application:
+      hostel: 'Гуртожиток'
+    navigation:
+      home: 'Домашня сторінка'
+      list_payments: 'Список платежів'
+      logout: 'Вийти'
+      login: 'Увійти'
+      sign_up: 'Зареєструватись'
+
+  admin:
+    email: 'Електронна пошта'
+    current_sign_in_at: 'Поточний вхід'
+    sign_in_count: 'Кількість користувачів'
+    created_at: 'Створено'
+    number: 'Номер'
+    side: 'Сторона'
+    room: 'Кімната'
+    create_order: 'Створити замовлення'
+
+    block:
+      small_room: 'Мала кімната'
+      big_room: 'Велика кімната'
+
+    floor:
+      blocks: 'Блоки'
+
+    user:
+      generate_information: 'Згенерувати інформацію'
+
+    rooms:
+      room_type: 'Тип кімнати'
+      room_status: 'Статус кімнати'
+      room_places: 'Місця в кімнаті'
+      available: 'Вільно'
+      busy: 'Зайнято'
+
+    tenants:
+      tenant: 'Орендарі'
+      user: 'Користувач'

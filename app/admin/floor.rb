@@ -40,11 +40,11 @@ ActiveAdmin.register Floor do
   index do
     selectable_column
     column :id
-    column :side do |f|
+    column t('admin.side') do |f|
       f.side == 'left' ? "Ліве" : 'Праве'
     end
-    column :number
-    column :blocks do |float|
+    column t('admin.number')
+    column t('admin.floor.blocks') do |float|
       blocks = float.blocks
       array =  blocks.map { |b| "<br>#{link_to b.number, admin_block_path(b)} (#{b.available? ? 'доступні' : 'зайнятий'})" }
       array[0] = array[0].split('<br>').last if array[0]

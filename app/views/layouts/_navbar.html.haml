@@ -1,0 +1,30 @@
+%nav.navbar.navbar-expand-lg.navbar-light.bg-light
+  #navbarSupportedContent.collapse.navbar-collapse
+    %ul.navbar-nav.mr-auto
+      %li.nav-item.active
+        %a.nav-link{:href => "#"}
+          Home
+      %li.nav-item.active
+        %a.nav-link{:href => "#"}
+          List payments
+      %li.nav-item.active
+        %a.nav-link{:href => "#"}
+          Home
+      %li.nav-item.active
+        %a.nav-link{:href => "#"}
+          Home
+    %form.form-inline.my-2.my-lg-0
+      %ul.navbar-nav.mr-auto
+        - if user_signed_in?
+          %li.nav-item.active
+            - name = (current_user.first_name && current_user.surname ? "#{current_user.first_name} #{current_user.surname}" : current_user.email)
+            = link_to name, edit_user_registration_path, class: 'nav-link'
+          %li.nav-item.active
+            = link_to 'logout', destroy_user_session_path, method: :delete, class: 'nav-link'
+        - else
+          %li.nav-item.active
+            = link_to 'login', new_user_session_path, class: 'nav-link'
+          %li.nav-item.active
+            = link_to 'sign_up', new_user_registration_path, class: 'nav-link'
+
+

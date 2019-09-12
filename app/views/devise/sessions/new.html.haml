@@ -1,0 +1,17 @@
+= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  = f.hidden_field :remember_me, value: 1
+  .d-flex.justify-content-center
+    .form-group.col-md-4
+      = f.text_field :login, class: 'form-control'
+  .d-flex.justify-content-center
+    .form-group.col-md-4
+      = f.password_field :password, autocomplete: "current-password", class: 'form-control'
+  .d-flex.justify-content-center
+    .col-md-4
+      = f.submit "Log in", class: 'btn btn-success btn-block'
+      %br
+  .d-flex.justify-content-center
+    .col-md-4
+      = link_to "Forgot password?", new_password_path(resource_name), class: 'btn btn-secondary btn-block'
+      = link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name), class: 'btn btn-secondary btn-block'
+

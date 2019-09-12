@@ -1,7 +1,8 @@
 class Tenant < ApplicationRecord
   after_update :check_login_code
   belongs_to :user
-
+  has_many :tenant_orders
+  has_many :rooms, through: :tenant_orders
 
   def check_login_code
     return if login_code || user.nil? || !user.the_taxpayer_identification_number

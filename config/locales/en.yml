@@ -30,7 +30,8 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Привіт"
+  hello: "Привіт,"
+
   layouts:
     application:
       hostel: 'Гуртожиток'
@@ -71,3 +72,44 @@ en:
     tenants:
       tenant: 'Орендарі'
       user: 'Користувач'
+
+  devise:
+    back: 'Назад'
+    email: 'Електронна пошта'
+    instructions_confirmation: 'Не отримали інструкції підтвердження?'
+
+    registrations:
+      edit:
+        first_name: "Ім'я"
+        surname: 'По-батькові'
+        last_name: 'Прізвище'
+        index: 'Поштовий індекс'
+        region: 'Область'
+        district: 'Район'
+        city: 'Місто/Село'
+        street: 'Вулиця'
+        house_number: 'Номер будинку'
+        passport_series: 'Серія паспорту'
+        who_issued_the_passport: 'Ким виданий паспорт'
+        when_issued_the_passport: 'Коли виданий паспорт'
+        the_taxpayer_identification_number: 'Ідентифікаційний номер'
+        phone_number: 'Номер телефону'
+        update: 'Оновити'
+
+      new:
+        sign_up: 'Зареєструватись'
+        login_code: 'Код входу'
+        password: 'Пароль'
+        password_confirmation: 'Повторіть пароль'
+
+    sessions:
+      new:
+        login: 'Увійти'
+        forgot_password: 'Забули пароль?'
+
+    confirmations:
+      new:
+        resend_confirmation_instructions: 'Повторити вказівки підтвердження'
+
+  admin_users:
+

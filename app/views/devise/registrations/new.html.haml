@@ -2,15 +2,15 @@
   = render "devise/shared/error_messages", resource: resource
   .d-flex.justify-content-center
     .form-group.col-md-4
-      = f.label :login_code
+      = f.label t('devise.registrations.new.login_code')
       = f.text_field :login_code, class: 'form-control'
   .d-flex.justify-content-center
     .form-group.col-md-4
-      = f.label :email
+      = f.label t('devise.email')
       = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control'
   .d-flex.justify-content-center
     .form-group.col-md-4
-      = f.label :password
+      = f.label t('devise.registrations.new.password')
       - if @minimum_password_length
         %em
           (#{@minimum_password_length} characters minimum)
@@ -18,14 +18,14 @@
       = f.password_field :password, autocomplete: "new-password", class: 'form-control'
   .d-flex.justify-content-center
     .form-group.col-md-4
-      = f.label :password_confirmation
+      = f.label t('devise.registrations.new.password_confirmation')
       %br/
       = f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control'
   .d-flex.justify-content-center
     .col-md-4
-      = f.submit "Sign up", class: 'btn btn-success btn-block'
+      = f.submit t('devise.registrations.new.sign_up'), class: 'btn btn-success btn-block'
       %br
   .d-flex.justify-content-center
     .col-md-4
-      = link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name), class: 'btn btn-secondary btn-block'
+      = link_to t('devise.instructions_confirmation'), new_confirmation_path(resource_name), class: 'btn btn-secondary btn-block'
 

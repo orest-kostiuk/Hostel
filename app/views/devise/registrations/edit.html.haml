@@ -5,66 +5,66 @@
   .col-md-12
     .row
       .form-group.col-md-4
-        = f.label :first_name
+        = f.label t('devise.registrations.edit.first_name')
         %br/
         = f.input_field :first_name, disabled: current_user.completed?, class: 'form-control'
       .form-group.col-md-4
-        = f.label :surname
+        = f.label t('devise.registrations.edit.surname')
         %br/
         = f.input_field :surname, disabled: current_user.completed?, class: 'form-control'
       .form-group.col-md-4
-        = f.label :last_name
+        = f.label t('devise.registrations.edit.last_name')
         %br/
         = f.input_field :last_name, disabled: current_user.completed?, class: 'form-control'
       .form-group.col-md-4
-        = f.label :index
+        = f.label t('devise.registrations.edit.index')
         %br/
         = f.input_field :index, class: 'form-control'
       .form-group.col-md-4
-        = f.label :region
+        = f.label t('devise.registrations.edit.region')
         %br/
         = f.input_field :region, class: 'form-control'
       .form-group.col-md-4
-        = f.label :district
+        = f.label t('devise.registrations.edit.district')
         %br/
         = f.input_field :district, class: 'form-control'
       .form-group.col-md-4
-        = f.label :city
+        = f.label t('devise.registrations.edit.city')
         %br/
         = f.input_field :city, class: 'form-control'
       .form-group.col-md-4
-        = f.label :street
+        = f.label t('devise.registrations.edit.street')
         %br/
         = f.input_field :street, class: 'form-control'
       .form-group.col-md-4
-        = f.label :house_number
+        = f.label t('devise.registrations.edit.house_number')
         %br/
         = f.input_field :house_number, class: 'form-control'
       .form-group.col-md-4
-        = f.label :email
+        = f.label t('devise.email')
         %br/
         = f.email_field :email, disabled: current_user.completed?, autofocus: true, autocomplete: "email", class: 'form-control'
       .form-group.col-md-4
-        = f.label :passport_series
+        = f.label t('devise.registrations.edit.passport_series')
         %br/
         = f.input_field :passport_series, disabled: current_user.completed?, class: 'form-control'
       .form-group.col-md-4
-        = f.label :who_issued_the_passport
+        = f.label t('devise.registrations.edit.who_issued_the_passport')
         %br/
         = f.input_field :who_issued_the_passport, disabled: current_user.completed?, class: 'form-control'
       .form-group.col-md-4
-        = f.label :when_issued_the_passport
+        = f.label t('devise.registrations.edit.when_issued_the_passport')
         %br/
         = f.date_field :when_issued_the_passport, disabled: current_user.completed?, class: 'form-control'
       .form-group.col-md-4
-        = f.label :the_taxpayer_identification_number
+        = f.label t('devise.registrations.edit.the_taxpayer_identification_number')
         %br/
         = f.input_field :the_taxpayer_identification_number, disabled: current_user.completed?, class: 'form-control', id: 'disabledTextInput'
       .form-group.col-md-4
-        = f.label :phone_number
+        = f.label t('devise.registrations.edit.phone_number')
         %br/
         = f.input_field :phone_number, disabled: current_user.completed?, class: 'form-control'
       .col-md-4
-        = link_to "Back", root_path, class: 'btn btn-primary btn-lg btn-block'
+        = link_to t('devise.back'), root_path, class: 'btn btn-primary btn-lg btn-block'
       .col-md-8
-        = f.submit "Update", class: 'btn btn-success btn-lg btn-block'
+        = f.submit t('devise.registrations.edit.update'), class: 'btn btn-success btn-lg btn-block'

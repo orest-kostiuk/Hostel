@@ -8,7 +8,7 @@ ActiveAdmin.register Tenant do
     selectable_column
     column :id
     column :room do |t|
-      if room = t.tenant_orders.where(order_status: 'ordered')&.first.room
+      if room = t.tenant_orders&.where(order_status: 'ordered')&.first&.room
         link_to "#{room.block.number} #{room.room_type == 'small' ? '2м' : '3м'}", admin_room_path(room)
       end
     end

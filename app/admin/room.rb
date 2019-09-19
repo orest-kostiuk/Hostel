@@ -32,6 +32,17 @@ ActiveAdmin.register Room do
     actions
   end
 
+  show do
+    attributes_table do
+      row :tenants
+      row :room_type
+      row :block
+      row :room_status
+      row :room_places
+    end
+    active_admin_comments
+  end
+
   filter :block, collection: -> {
     Block.all.map { |b| ["#{b.floor.side == 'left' ? "Л" : 'П'}-#{b.number}", b.id] }
   }

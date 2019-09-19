@@ -2,7 +2,7 @@
 lock "~> 3.11.1"
 
 set :application, 'Hostel'
-set :repo_url, "git@git.com:Ckazo4nik/Hostel.git"
+set :repo_url, "https://github.com/Ckazo4nik/Hostel"
 
 set :deploy_to, '/home/deploy/apps/Hostel'
 

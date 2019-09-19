@@ -2,9 +2,10 @@ ActiveAdmin.register Tenant do
   permit_params :first_name, :surname, :last_name, :index, :region, :district, :city, :street, :house_number,
                 :passport_series, :who_issued_the_passport, :when_issued_the_passport, :the_taxpayer_identification_number,
                 :phone_number, :login_code, :user_id
+  menu label: "Орендарі"
 
 
-  index do
+  index :title => 'Орендарі' do
     selectable_column
     column :id
     column :room do |t|

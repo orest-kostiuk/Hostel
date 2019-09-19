@@ -1,5 +1,7 @@
 ActiveAdmin.register Room do
   permit_params :side
+  menu label: "Кімнати"
+
 
   scope :available do
     Room.where(room_status: 'available')

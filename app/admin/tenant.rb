@@ -16,8 +16,9 @@ ActiveAdmin.register Tenant do
       [t.last_name, t.first_name, t.surname].join(' ')
     end
     column :user do |t|
-      if t = t.user
-        link_to [t.last_name, t.first_name, t.surname].join(' '), admin_user_path(t)
+      if user = t.user
+        link_to (user.full_name_present? ? [user.last_name, user.first_name,
+                                            user.surname].join(' ') : user.email), admin_user_path(user)
       end
     end
     actions
@@ -31,7 +32,6 @@ ActiveAdmin.register Tenant do
 
   form do |f|
     f.inputs do
-      f.input :user
       f.input :first_name
       f.input :surname
       f.input :last_name
@@ -74,27 +74,6 @@ ActiveAdmin.register Tenant do
       row :login_code
     end
   end
-
-  form do |f|
-    f.inputs do
-      f.input :first_name
-      f.input :surname
-      f.input :last_name
-      f.input :index
-      f.input :region
-      f.input :district
-      f.input :city
-      f.input :street
-      f.input :house_number
-      f.input :passport_series
-      f.input :who_issued_the_passport
-      f.input :when_issued_the_passport
-      f.input :the_taxpayer_identification_number
-      f.input :phone_number
-    end
-    f.actions
-  end
-
 
   action_item :view, only: :show do
     link_to 'Create order', new_admin_tenant_order_path(tenant_id: tenant.id), method: :get

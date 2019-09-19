@@ -18,6 +18,10 @@ class User < ApplicationRecord
     where(conditions).where(["lower(login_code) = :value OR lower(email) = :value", {value: login.strip.downcase}]).first
   end
 
+  def full_name_present?
+    first_name && last_name && surname
+  end
+
   protected
 
 # Attempt to find a user by it's email. If a record is found, send new
@@ -61,6 +65,10 @@ class User < ApplicationRecord
   end
 
   def check_exists_tenant_information
-    UpdateTenantInformation.new(self).process
+    if tenant = Tenant.find_by_login_code(login_code)
+      UpdateTenantInformation.new(self, tenant).process
+    else
+      self.login_code = nil
+    end
   end
 end

@@ -1,7 +1,8 @@
 ActiveAdmin.register User do
   permit_params :email, :password, :password_confirmation, :first_name
+  menu label: "Користувачі"
 
-  index do
+  index :title => 'Користувачі' do
     selectable_column
     id_column
     column :email
@@ -31,6 +32,6 @@ ActiveAdmin.register User do
 
 
   action_item :view, only: :show, if: proc { !user.tenant } do
-    link_to 'Generate information', generate_information_admin_user_path(user.id), method: :post
+    link_to 'Згенерувати профіль орендаря', generate_information_admin_user_path(user.id), method: :post
   end
 end

@@ -1,7 +1,7 @@
 class UpdateTenantInformation
-  def initialize(u)
+  def initialize(u, tenant)
     @user = u
-    @tenant = Tenant.find_by_login_code(u.login_code)
+    @tenant = tenant
   end
 
   def process

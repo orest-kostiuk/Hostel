@@ -1,5 +1,7 @@
 ActiveAdmin.register Room do
   permit_params :side
+  menu label: "Кімнати"
+
 
   scope :available do
     Room.where(room_status: 'available')
@@ -30,6 +32,17 @@ ActiveAdmin.register Room do
       raw array.to_sentence
     end
     actions
+  end
+
+  show do
+    attributes_table do
+      row :tenants
+      row :room_type
+      row :block
+      row :room_status
+      row :room_places
+    end
+    active_admin_comments
   end
 
   filter :block, collection: -> {

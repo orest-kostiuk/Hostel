@@ -1,5 +1,6 @@
 ActiveAdmin.register TenantOrder do
   permit_params :room_id, :tenant_id, :start_date, :end_date, :count_places
+  menu label: "Список оренд"
 
   filter :block, collection: -> {
     Block.all.map { |b| ["#{b.floor.side == 'left' ? "Л" : 'П'}-#{b.number}", b.id] }

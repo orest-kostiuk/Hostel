@@ -1,5 +1,6 @@
 require 'mina/rails'
 require 'mina/git'
+require 'mina/puma'
 require 'mina/rbenv'  # for rbenv support. (https://rbenv.org)
 # require 'mina/rvm'    # for rvm support. (https://rvm.io)
 
@@ -11,7 +12,7 @@ require 'mina/rbenv'  # for rbenv support. (https://rbenv.org)
 
 set :application_name, 'Hostel'
 set :domain, '18.216.51.21'
-set :deploy_to, '/var/www/hostel.com'
+set :deploy_to, '/home/ubuntu/hostel'
 set :repository, 'git@github.com:Ckazo4nik/Hostel.git'
 set :branch, 'master'
 set :user, 'ubuntu'
@@ -43,10 +44,10 @@ end
 # Put any custom commands you need to run at setup
 # All paths in `shared_dirs` and `shared_paths` will be created on their own.
 task :setup do
-  command %{rbenv install 2.5.1 --skip-existing}
-  command %[touch "#{fetch(:shared_path)}/config/database.yml"]
-  command %[touch "#{fetch(:shared_path)}/config/secrets.yml"]
-  command %[touch "#{fetch(:shared_path)}/config/puma.rb"]
+  command %{sudo rbenv install 2.5.1 --skip-existing}
+  command %[sudo touch "#{fetch(:shared_path)}/config/database.yml"]
+  command %[sudo touch "#{fetch(:shared_path)}/config/secrets.yml"]
+  command %[sudo touch "#{fetch(:shared_path)}/config/puma.rb"]
   comment "Be sure to edit '#{fetch(:shared_path)}/config/database.yml', 'secrets.yml' and puma.rb."
 end
 
@@ -57,7 +58,6 @@ task :deploy do
     comment "Deploying #{fetch(:application_name)} to #{fetch(:domain)}:#{fetch(:deploy_to)}"
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
-    invoke :'rvm:load_env_vars'
     invoke :'bundle:install'
     invoke :'rails:db_migrate'
     command %{#{fetch(:rails)} db:seed}

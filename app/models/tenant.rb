@@ -9,8 +9,9 @@ class Tenant < ApplicationRecord
     update_column :login_code, generate_login_code
   end
   def generate_login_code
+    code = user.the_taxpayer_identification_number[6..100].reverse << user.id.to_s
     loop do
-      code = user.the_taxpayer_identification_number[6..100].reverse << user.id.to_s + 1.to_s
+      code + 1.to_s
       break code unless User.find_by_login_code(code) || Tenant.find_by_login_code(code)
     end
   end

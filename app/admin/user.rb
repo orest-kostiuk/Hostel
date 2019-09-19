@@ -1,7 +1,8 @@
 ActiveAdmin.register User do
   permit_params :email, :password, :password_confirmation, :first_name
+  menu label: "Користувачі"
 
-  index do
+  index :title => 'Користувачі' do
     selectable_column
     id_column
     column t('admin.email')

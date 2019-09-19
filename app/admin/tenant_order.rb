@@ -19,7 +19,7 @@ ActiveAdmin.register TenantOrder do
   index do
     selectable_column
     column :id
-    column t('admin.room') do |o|
+    column t('active_admin.user.column.room') do |o|
       room = o.room
       link_to "#{room.block.number} #{room.room_type == 'small' ? '2м' : '3м'}", admin_room_path(room)
     end

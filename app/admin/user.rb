@@ -5,10 +5,10 @@ ActiveAdmin.register User do
   index :title => 'Користувачі' do
     selectable_column
     id_column
-    column t('admin.email')
-    column t('admin.current_sign_in_at')
-    column t('admin.sign_in_count')
-    column t('admin.created_at')
+    column t('active_admin.user.column.email')
+    column t('active_admin.user.column.current_sign_in_at')
+    column t('active_admin.user.column.sign_in_count')
+    column t('active_admin.user.column.created_at')
     actions
   end
 
@@ -32,6 +32,6 @@ ActiveAdmin.register User do
 
 
   action_item :view, only: :show, if: proc { !user.tenant } do
-    link_to t('admin.user.generate_information'), generate_information_admin_user_path(user.id), method: :post
+    link_to t('active_admin.user.link.generate_information'), generate_information_admin_user_path(user.id), method: :post
   end
 end

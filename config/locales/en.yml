@@ -42,8 +42,8 @@ en:
       login: 'Увійти'
       sign_up: 'Зареєструватись'
 
-  admin:
-    users:
+  active_admin:
+    user:
       column:
         email: 'Електронна пошта'
         current_sign_in_at: 'Поточний вхід'
@@ -52,17 +52,16 @@ en:
         number: 'Номер'
         side: 'Сторона'
         room: 'Кімната'
+      link:
         create_order: 'Створити замовлення'
+        generate_information: 'Згенерувати інформацію'
 
-    block:
+    blocks:
       small_room: 'Мала кімната'
       big_room: 'Велика кімната'
 
-    floor:
-      blocks: 'Блоки'
-
-    user:
-      generate_information: 'Згенерувати інформацію'
+    floors:
+      block: 'Блоки'
 
     rooms:
       room_type: 'Тип кімнати'
@@ -72,7 +71,7 @@ en:
       busy: 'Зайнято'
 
     tenants:
-      tenant: 'Орендарі'
+      tenant: 'Орендар'
       user: 'Користувач'
 
   devise:

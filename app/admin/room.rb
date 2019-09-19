@@ -4,24 +4,24 @@ ActiveAdmin.register Room do
 
 
   scope :available do
-    Room.where(room_status: t('admin.room.available'))
+    Room.where(room_status: t('active_admin.rooms.available'))
   end
   scope :busy do
-    Room.where(room_status: t('admin.room.busy'))
+    Room.where(room_status: t('active_admin.rooms.busy'))
   end
 
   index do
     selectable_column
     column :id
-    column t('admin.rooms.room_type') do |room|
+    column t('active_admin.rooms.room_type') do |room|
       room.room_type == 'small' ? '2 місний' : '3 місний'
     end
     column :block do |r|
       r = r.block
       link_to [r.floor.side == 'left' ? "Л" : 'П', r.number ].join('-'), admin_block_path(r)
     end
-    column t('admin.rooms.room_status')
-    column t('admin.rooms.room_places') do |room|
+    column t('active_admin.rooms.room_status')
+    column t('active_admin.rooms.room_places') do |room|
       places = room.room_places
       places - room.tenant_orders.where(order_status: 'ordered').map { |o| o.count_places}.sum
     end
@@ -50,6 +50,6 @@ ActiveAdmin.register Room do
   }
 
   action_item :view, only: :show do
-    link_to t('admin.create_order'), new_admin_tenant_order_path(room_id: room.id), method: :get
+    link_to t('active_admin.user.link.create_order'), new_admin_tenant_order_path(room_id: room.id), method: :get
   end
 end

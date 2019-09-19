@@ -43,14 +43,16 @@ en:
       sign_up: 'Зареєструватись'
 
   admin:
-    email: 'Електронна пошта'
-    current_sign_in_at: 'Поточний вхід'
-    sign_in_count: 'Кількість користувачів'
-    created_at: 'Створено'
-    number: 'Номер'
-    side: 'Сторона'
-    room: 'Кімната'
-    create_order: 'Створити замовлення'
+    users:
+      column:
+        email: 'Електронна пошта'
+        current_sign_in_at: 'Поточний вхід'
+        sign_in_count: 'Кількість користувачів'
+        created_at: 'Створено'
+        number: 'Номер'
+        side: 'Сторона'
+        room: 'Кімната'
+        create_order: 'Створити замовлення'
 
     block:
       small_room: 'Мала кімната'

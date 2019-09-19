@@ -4,10 +4,10 @@ ActiveAdmin.register AdminUser do
   index do
     selectable_column
     id_column
-    column t('admin.email')
-    column t('admin.current_sign_in_at')
-    column t('admin.sign_in_count')
-    column t('admin.created_at')
+    column t('admin.users.column.email')
+    column t('admin.users.column.current_sign_in_at')
+    column t('admin.users.column.sign_in_count')
+    column t('admin.users.column.created_at')
     actions
   end
 

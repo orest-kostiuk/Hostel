@@ -1,14 +1,15 @@
 ActiveAdmin.register User do
   permit_params :email, :password, :password_confirmation, :first_name
-  menu label: "Користувачі"
+
+  menu label: I18n.t('active_admin.menu.items.user')
 
   index :title => 'Користувачі' do
     selectable_column
     id_column
-    column :email
-    column :current_sign_in_at
-    column :sign_in_count
-    column :created_at
+    column t('active_admin.user.column.email')
+    column t('active_admin.user.column.current_sign_in_at')
+    column t('active_admin.user.column.sign_in_count')
+    column t('active_admin.user.column.created_at')
     actions
   end
 
@@ -32,6 +33,6 @@ ActiveAdmin.register User do
 
 
   action_item :view, only: :show, if: proc { !user.tenant } do
-    link_to 'Згенерувати профіль орендаря', generate_information_admin_user_path(user.id), method: :post
+    link_to t('active_admin.user.link.generate_information'), generate_information_admin_user_path(user.id), method: :post
   end
 end

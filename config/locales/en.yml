@@ -30,7 +30,97 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
-  hello2: "Hello world32"
-  admin:
-    email: 'Email'
+  hello: "Привіт,"
+
+  layouts:
+    application:
+      hostel: 'Гуртожиток'
+    navigation:
+      home: 'Домашня сторінка'
+      list_payments: 'Список платежів'
+      logout: 'Вийти'
+      login: 'Увійти'
+      sign_up: 'Зареєструватись'
+
+  active_admin:
+    user:
+      column:
+        email: 'Електронна пошта'
+        current_sign_in_at: 'Поточний вхід'
+        sign_in_count: 'Кількість користувачів'
+        created_at: 'Створено'
+        number: 'Номер'
+        side: 'Сторона'
+        room: 'Кімната'
+      link:
+        create_order: 'Створити замовлення'
+        generate_information: 'Згенерувати інформацію'
+
+    blocks:
+      small_room: 'Мала кімната'
+      big_room: 'Велика кімната'
+
+    floors:
+      block: 'Блоки'
+
+    rooms:
+      room_type: 'Тип кімнати'
+      room_status: 'Статус кімнати'
+      room_places: 'Місця в кімнаті'
+      block: 'Блок'
+      ordres: 'Оренди'
+
+
+    tenants:
+      tenant: 'Орендар'
+      user: 'Користувач'
+
+    menu:
+      items:
+        block: 'Блоки'
+        floor: 'Поверхи'
+        room: 'Кімнати'
+        tenant: 'Орендарі'
+        tenant_order: 'Список оренд'
+        user: 'Користувачі'
+
+  devise:
+    back: 'Назад'
+    email: 'Електронна пошта'
+    instructions_confirmation: 'Не отримали інструкції підтвердження?'
+
+    registrations:
+      edit:
+        first_name: "Ім'я"
+        surname: 'По-батькові'
+        last_name: 'Прізвище'
+        index: 'Поштовий індекс'
+        region: 'Область'
+        district: 'Район'
+        city: 'Місто/Село'
+        street: 'Вулиця'
+        house_number: 'Номер будинку'
+        passport_series: 'Серія паспорту'
+        who_issued_the_passport: 'Ким виданий паспорт'
+        when_issued_the_passport: 'Коли виданий паспорт'
+        the_taxpayer_identification_number: 'Ідентифікаційний номер'
+        phone_number: 'Номер телефону'
+        update: 'Оновити'
+
+      new:
+        sign_up: 'Зареєструватись'
+        login_code: 'Код входу'
+        password: 'Пароль'
+        password_confirmation: 'Повторіть пароль'
+
+    sessions:
+      new:
+        login: 'Увійти'
+        forgot_password: 'Забули пароль?'
+
+    confirmations:
+      new:
+        resend_confirmation_instructions: 'Повторити вказівки підтвердження'
+
+  admin_users:
+

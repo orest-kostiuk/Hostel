@@ -26,7 +26,6 @@ end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
-gem "letter_opener", :group => :development
 gem 'bootstrap', '~> 4.3.1'
 gem 'haml'
 gem 'html2haml'
@@ -40,3 +39,4 @@ gem 'mina', require: false
 gem 'mina-puma', require: false,  github: 'untitledkingdom/mina-puma'
 gem 'dotenv-rails'
 gem 'mini_racer'
+gem 'sendgrid-ruby'

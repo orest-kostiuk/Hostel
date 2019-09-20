@@ -37,7 +37,7 @@ en:
       hostel: 'Гуртожиток'
     navigation:
       home: 'Домашня сторінка'
-      list_payments: 'Список платежів'
+      list_payments: 'Баланс'
       logout: 'Вийти'
       login: 'Увійти'
       sign_up: 'Зареєструватись'
@@ -74,6 +74,8 @@ en:
     tenants:
       tenant: 'Орендар'
       user: 'Користувач'
+      link:
+        create_balance: 'Створити баланс'
 
     menu:
       items:
@@ -83,6 +85,9 @@ en:
         tenant: 'Орендарі'
         tenant_order: 'Список оренд'
         user: 'Користувачі'
+        balance: 'Баланси'
+        payment: 'Витрати'
+        replenishment: 'Надходження'
 
   devise:
     back: 'Назад'

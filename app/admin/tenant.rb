@@ -23,6 +23,11 @@ ActiveAdmin.register Tenant do
                                             user.surname].join(' ') : user.email), admin_user_path(user)
       end
     end
+    column t('active_admin.tenants.balance') do |t|
+      if balance = t.balance
+        link_to balance.account_balance, admin_balance_path(balance)
+      end
+    end
     actions
   end
 
@@ -77,6 +82,24 @@ ActiveAdmin.register Tenant do
     end
   end
 
+
+
+  member_action :create_balance, method: :post do
+  end
+
+  controller do
+
+    def create_balance
+      t = Tenant.find(params[:id])
+      t.balance_create
+      redirect_to admin_tenant_path t
+      flash[:notice] =  'Успішно створенно'
+    end
+  end
+
+  action_item :view, only: :show, if: proc { tenant.balance.nil? } do
+    link_to t('active_admin.tenants.link.create_balance'), create_balance_admin_tenant_path(tenant.id), method: :post
+  end
   action_item :view, only: :show do
     link_to t('active_admin.user.link.create_order'), new_admin_tenant_order_path(tenant_id: tenant.id), method: :get
   end

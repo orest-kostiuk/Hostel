@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users, controllers: { registrations: 'registrations' }
   root to: "home#index"
+  resources :balances
 end

@@ -3,6 +3,8 @@ class Tenant < ApplicationRecord
   belongs_to :user
   has_many :tenant_orders
   has_many :rooms, through: :tenant_orders
+  has_one :balance
+  after_create :balance_create
 
   def check_login_code
     return if login_code || user.nil? || !user.the_taxpayer_identification_number
@@ -14,5 +16,9 @@ class Tenant < ApplicationRecord
       code + 1.to_s
       break code unless User.find_by_login_code(code) || Tenant.find_by_login_code(code)
     end
+  end
+
+  def balance_create
+    create_balance unless balance
   end
 end

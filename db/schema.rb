@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_12_190238) do
+ActiveRecord::Schema.define(version: 2019_09_20_134126) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,14 @@ ActiveRecord::Schema.define(version: 2019_09_12_190238) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "balances", force: :cascade do |t|
+    t.bigint "tenant_id"
+    t.float "account_balance", default: 0.0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tenant_id"], name: "index_balances_on_tenant_id"
+  end
+
   create_table "blocks", force: :cascade do |t|
     t.integer "floor_id"
     t.integer "number"
@@ -56,6 +64,24 @@ ActiveRecord::Schema.define(version: 2019_09_12_190238) do
     t.integer "number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.bigint "balance_id"
+    t.integer "amount"
+    t.date "date_payed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["balance_id"], name: "index_payments_on_balance_id"
+  end
+
+  create_table "replenishments", force: :cascade do |t|
+    t.bigint "balance_id"
+    t.integer "amount"
+    t.date "replenishment_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["balance_id"], name: "index_replenishments_on_balance_id"
   end
 
   create_table "rooms", force: :cascade do |t|

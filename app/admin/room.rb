@@ -1,7 +1,7 @@
 ActiveAdmin.register Room do
   permit_params :side
-  menu label: "Кімнати"
 
+  menu label: I18n.t('active_admin.menu.items.room')
 
   scope :available do
     Room.where(room_status: t('active_admin.rooms.available'))

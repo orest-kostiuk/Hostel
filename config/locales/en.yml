@@ -74,6 +74,15 @@ en:
       tenant: 'Орендар'
       user: 'Користувач'
 
+    menu:
+      items:
+        block: 'Блоки'
+        floor: 'Поверхи'
+        room: 'Кімнати'
+        tenant: 'Орендарі'
+        tenant_order: 'Список оренд'
+        user: 'Користувачі'
+
   devise:
     back: 'Назад'
     email: 'Електронна пошта'

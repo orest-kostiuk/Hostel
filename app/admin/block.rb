@@ -1,7 +1,7 @@
 ActiveAdmin.register Block do
   permit_params :side
 
-  menu label: "Блоки"
+  menu label: I18n.t('active_admin.menu.items.block')
 
   filter :floor, collection: -> {
     Floor.all.map { |f| ["#{f.side == 'left' ? "Ліве" : 'Праве'}-#{f.number}", f.id] }

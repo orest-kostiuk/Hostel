@@ -1,6 +1,7 @@
 ActiveAdmin.register Floor do
   permit_params :side
-  menu label: "Поверхи"
+  
+  menu label: I18n.t('active_admin.menu.items.floor')
 
   scope :floor_1 do
     Floor.where(number: 1)

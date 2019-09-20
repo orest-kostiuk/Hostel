@@ -1,6 +1,7 @@
 ActiveAdmin.register User do
   permit_params :email, :password, :password_confirmation, :first_name
-  menu label: "Користувачі"
+
+  menu label: I18n.t('active_admin.menu.items.user')
 
   index :title => 'Користувачі' do
     selectable_column

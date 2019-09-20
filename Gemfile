@@ -40,3 +40,4 @@ gem 'mina', require: false
 gem 'mina-puma', require: false,  github: 'untitledkingdom/mina-puma'
 gem 'dotenv-rails'
 gem 'mini_racer'
+gem 'sendgrid-ruby'

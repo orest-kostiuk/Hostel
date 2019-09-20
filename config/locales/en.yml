@@ -67,8 +67,9 @@ en:
       room_type: 'Тип кімнати'
       room_status: 'Статус кімнати'
       room_places: 'Місця в кімнаті'
-      available: 'Вільно'
-      busy: 'Зайнято'
+      block: 'Блок'
+      ordres: 'Оренди'
+
 
     tenants:
       tenant: 'Орендар'

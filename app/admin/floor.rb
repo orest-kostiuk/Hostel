@@ -39,7 +39,7 @@ ActiveAdmin.register Floor do
     Floor.where(number: 9)
   end
 
-  index do
+  index :title => 'Поверхи' do
     selectable_column
     column :id
     column t('active_admin.user.column.side') do |f|

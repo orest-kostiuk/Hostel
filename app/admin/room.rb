@@ -10,13 +10,13 @@ ActiveAdmin.register Room do
     Room.where(room_status: 'busy')
   end
 
-  index do
+  index :title => 'Кімнати' do
     selectable_column
     column :id
-    column :room_type, t('active_admin.rooms.room_type') do |room|
+    column t('active_admin.rooms.room_type') do |room|
       room.room_type == 'small' ? '2 місний' : '3 місний'
     end
-    column :block, t('active_admin.rooms.block') do |r|
+    column t('active_admin.rooms.block') do |r|
       r = r.block
       link_to [r.floor.side == 'left' ? "Л" : 'П', r.number ].join('-'), admin_block_path(r)
     end
@@ -25,7 +25,7 @@ ActiveAdmin.register Room do
       places = room.room_places
       places - room.tenant_orders.where(order_status: 'ordered').map { |o| o.count_places}.sum
     end
-    column :ordres, t('active_admin.rooms.ordres') do |room|
+    column t('active_admin.rooms.ordres') do |room|
       tenants = room.tenant_orders.where(order_status: 'ordered').map { |o| o.tenant}
       array =  tenants.map { |t| "<br>#{link_to [t.last_name, t.first_name, t.surname].join(' '), admin_tenant_path(t)} місць(#{t.tenant_orders.last.count_places})" }
       array[0] = array[0].split('<br>').last if array[0]

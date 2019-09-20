@@ -7,7 +7,7 @@ ActiveAdmin.register Block do
     Floor.all.map { |f| ["#{f.side == 'left' ? "Ліве" : 'Праве'}-#{f.number}", f.id] }
   }
 
-  index do
+  index :title => 'Блоки' do
     selectable_column
     column t('active_admin.user.column.number') do |b|
       link_to b.number, admin_block_path(b)

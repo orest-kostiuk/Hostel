@@ -17,7 +17,7 @@ ActiveAdmin.register TenantOrder do
   end
 
 
-  index do
+  index :title => 'Список оренд' do
     selectable_column
     column :id
     column t('active_admin.user.column.room') do |o|

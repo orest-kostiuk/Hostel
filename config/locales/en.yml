@@ -52,6 +52,7 @@ en:
         number: 'Номер'
         side: 'Сторона'
         room: 'Кімната'
+        pay: 'Оплата'
       link:
         create_order: 'Створити замовлення'
         generate_information: 'Згенерувати інформацію'

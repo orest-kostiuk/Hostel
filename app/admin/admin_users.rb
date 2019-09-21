@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register AdminUser do
   permit_params :email, :password, :password_confirmation
 
-  index :title => 'АдмінКористувачі' do
+  index title: 'АдмінКористувачі' do
     selectable_column
     id_column
     column t('active_admin.user.column.email'), :email
@@ -24,5 +26,4 @@ ActiveAdmin.register AdminUser do
     end
     f.actions
   end
-
 end

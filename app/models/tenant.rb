@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Tenant < ApplicationRecord
   after_update :check_login_code
   belongs_to :user
@@ -9,8 +11,10 @@ class Tenant < ApplicationRecord
 
   def check_login_code
     return if login_code || user.nil? || !user.the_taxpayer_identification_number
+
     update_column :login_code, generate_login_code
   end
+
   def generate_login_code
     code = user.the_taxpayer_identification_number[6..100].reverse << user.id.to_s
     loop do
@@ -30,5 +34,4 @@ class Tenant < ApplicationRecord
   def to_s
     "Tenant ##{id}"
   end
-
 end

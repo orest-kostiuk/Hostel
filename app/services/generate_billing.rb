@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
 class GenerateBilling
   def initialize(month, admin)
     @month = month
     return unless @month
+
     @billment = admin.billments.create(month: month) if @month
   end
 
@@ -13,7 +16,7 @@ class GenerateBilling
   private
 
   def get_all_active_orders
-    @active_order_tenants = TenantOrder.ordered.map { |t_o| t_o.tenant if t_o.tenant }
+    @active_order_tenants = TenantOrder.ordered.map(&:tenant)
   end
 
   def process_billing

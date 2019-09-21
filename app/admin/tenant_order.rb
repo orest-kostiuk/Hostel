@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register TenantOrder do
   permit_params :room_id, :tenant_id, :start_date, :end_date, :count_places
 
   menu label: I18n.t('active_admin.menu.items.tenant_order')
 
-  filter :block, collection: -> {
-    Block.all.map { |b| ["#{b.floor.side == 'left' ? "Л" : 'П'}-#{b.number}", b.id] }
+  filter :block, collection: lambda {
+    Block.all.map { |b| ["#{b.floor.side == 'left' ? 'Л' : 'П'}-#{b.number}", b.id] }
   }
 
   scope :all do
@@ -15,13 +17,11 @@ ActiveAdmin.register TenantOrder do
     TenantOrder.where(order_status: 'ordered')
   end
 
-
   scope :complited do
     TenantOrder.where(order_status: 'complited')
   end
 
-
-  index :title => 'Список оренд' do
+  index title: 'Список оренд' do
     selectable_column
     column :id
     column t('active_admin.user.column.room') do |o|
@@ -40,7 +40,7 @@ ActiveAdmin.register TenantOrder do
 
   form do |f|
     f.inputs do
-      f.input :room, collection: Room.all.map { |r| [[r.block.floor.side == 'right' ? 'П' : "Л", r.block.number, r.room_type == 'small' ? '2м' : '3м'].join('-'), r.id] if !r.busy?}
+      f.input :room, collection: Room.all.map { |r| [[r.block.floor.side == 'right' ? 'П' : 'Л', r.block.number, r.room_type == 'small' ? '2м' : '3м'].join('-'), r.id] unless r.busy? }
       f.input :tenant, collection: Tenant.all.map { |t| [[t.last_name, t.first_name, t.surname, t.the_taxpayer_identification_number].join(' '), t.id] }
       f.input :start_date
       f.input :end_date

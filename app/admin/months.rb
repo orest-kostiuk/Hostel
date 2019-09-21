@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register Month do
-  actions :all, :except => [:new, :edit]
+  actions :all, except: %i[new edit]
   # menu label: I18n.t('active_admin.menu.items.balance')
   #
   #

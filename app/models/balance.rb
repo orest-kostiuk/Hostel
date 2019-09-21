@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Balance < ApplicationRecord
   has_many :payments
   has_many :replenishments

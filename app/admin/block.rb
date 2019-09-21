@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register Block do
   permit_params :side
 
   menu label: I18n.t('active_admin.menu.items.block')
 
-  filter :floor, collection: -> {
-    Floor.all.map { |f| ["#{f.side == 'left' ? "Ліве" : 'Праве'}-#{f.number}", f.id] }
+  filter :floor, collection: lambda {
+    Floor.all.map { |f| ["#{f.side == 'left' ? 'Ліве' : 'Праве'}-#{f.number}", f.id] }
   }
 
-  index :title => 'Блоки' do
+  index title: 'Блоки' do
     selectable_column
     column t('active_admin.user.column.number') do |b|
       link_to b.number, admin_block_path(b)

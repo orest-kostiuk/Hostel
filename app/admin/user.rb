@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register User do
   permit_params :email, :password, :password_confirmation, :first_name
 
   menu label: I18n.t('active_admin.menu.items.user')
 
-  index :title => 'Користувачі' do
+  index title: 'Користувачі' do
     selectable_column
     id_column
     column t('active_admin.user.column.email'), :email
@@ -22,7 +24,6 @@ ActiveAdmin.register User do
   end
 
   controller do
-
     def generate_information
       u = User.find(params[:id])
       tenant = GenerateInformation.new(u).process
@@ -36,7 +37,6 @@ ActiveAdmin.register User do
     end
     f.actions
   end
-
 
   show do
     attributes_table do

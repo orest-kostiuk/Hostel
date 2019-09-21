@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register Credential do
   permit_params :name, :int_value, :str_value, :admin_user_id
 

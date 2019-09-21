@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register Tenant do
   permit_params :first_name, :surname, :last_name, :index, :region, :district, :city, :street, :house_number,
                 :passport_series, :who_issued_the_passport, :when_issued_the_passport, :the_taxpayer_identification_number,
@@ -5,8 +7,7 @@ ActiveAdmin.register Tenant do
 
   menu label: I18n.t('active_admin.menu.items.tenant')
 
-
-  index :title => 'Орендарі' do
+  index title: 'Орендарі' do
     selectable_column
     column :id
     column t('active_admin.user.column.room') do |t|
@@ -35,7 +36,6 @@ ActiveAdmin.register Tenant do
   filter :current_sign_in_at
   filter :sign_in_count
   filter :created_at
-
 
   form do |f|
     f.inputs do
@@ -82,18 +82,15 @@ ActiveAdmin.register Tenant do
     end
   end
 
-
-
   member_action :create_balance, method: :post do
   end
 
   controller do
-
     def create_balance
       t = Tenant.find(params[:id])
       t.balance_create
       redirect_to admin_tenant_path t
-      flash[:notice] =  'Успішно створенно'
+      flash[:notice] = 'Успішно створенно'
     end
   end
 

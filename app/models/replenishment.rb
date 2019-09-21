@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Replenishment < ApplicationRecord
   belongs_to :balance
   belongs_to :month, optional: true

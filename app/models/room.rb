@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class Room < ApplicationRecord
-  enum room_type: [:small, :big]
-  enum room_status: [:available, :busy]
+  enum room_type: %i[small big]
+  enum room_status: %i[available busy]
   before_create :set_count_places
 
   belongs_to :block

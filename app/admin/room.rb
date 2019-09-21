@@ -41,6 +41,7 @@ ActiveAdmin.register Room do
       row :tenants
       row :room_type
       row :block
+      row :floor
       row :room_status
       row :room_places
     end

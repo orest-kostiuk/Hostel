@@ -24,4 +24,17 @@ ActiveAdmin.register Block do
     end
     actions
   end
+
+  show do
+    attributes_table do
+      row :floor do |block|
+        if f = block.floor
+          link_to f.side, admin_floor_path(f)
+        end
+      end
+      row :number
+      row :created_at
+      row :updated_at
+    end
+  end
 end

@@ -25,4 +25,17 @@ ActiveAdmin.register Balance do
     end
     actions
   end
+
+  show do
+    attributes_table do
+      row :tenant do |user|
+        if t = user.tenant
+          link_to [t.first_name, t.surname, t.last_name].join(' '), admin_tenant_path(t)
+        end
+      end
+      row :account_balance
+      row :created_at
+      row :updated_at
+    end
+  end
 end

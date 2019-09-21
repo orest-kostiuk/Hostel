@@ -9,15 +9,15 @@ ActiveAdmin.register TenantOrder do
     Block.all.map { |b| ["#{b.floor.side == 'left' ? 'Л' : 'П'}-#{b.number}", b.id] }
   }
 
-  scope I18n.t('active_admin.user.column.all'), :all do
+  scope I18n.t('active_admin.tenant_order.all'), :all do
     TenantOrder.all
   end
 
-  scope :ordered do
+  scope  I18n.t('active_admin.tenant_order.ordered') do
     TenantOrder.where(order_status: 'ordered')
   end
 
-  scope :completed do
+  scope I18n.t('active_admin.tenant_order.complited') do
     TenantOrder.where(order_status: 'complited')
   end
 
@@ -32,8 +32,8 @@ ActiveAdmin.register TenantOrder do
       t = o.tenant
       link_to [t.last_name, t.first_name, t.surname].join(' '), admin_tenant_path(t)
     end
-    column t('active_admin.tenant_order.start_date')
-    column t('active_admin.tenant_order.end_date')
+    column t('active_admin.tenant_order.start_date'), :start_date
+    column t('active_admin.tenant_order.end_date'), :end_date
     column t('active_admin.tenant_order.order_status'), :order_status
     actions
   end
@@ -54,6 +54,27 @@ ActiveAdmin.register TenantOrder do
       @tenant = Tenant.find_by_id(params['tenant_id'])
       @room = Room.find_by_id(params['room_id'])
       @tenant_order = TenantOrder.new(tenant: @tenant, room: @room)
+    end
+  end
+
+  show do
+    attributes_table do
+      row :room do |tenant_order|
+        if r = tenant_order.room
+          link_to r.room_type, admin_room_path(r)
+        end
+      end
+      row :tenant do |tenant_order|
+        if t = tenant_order.tenant
+          link_to [t.first_name, t.surname, t.last_name].join(' '), admin_tenant_path(t)
+        end
+      end
+      row :start_date
+      row :end_date
+      row :order_status
+      row :created_at
+      row :updated_at
+      row :count_places
     end
   end
 end

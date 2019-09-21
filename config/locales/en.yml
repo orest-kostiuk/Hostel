@@ -62,7 +62,6 @@ en:
         floor_7: 'Поверх №7'
         floor_8: 'Поверх №8'
         floor_9: 'Поверх №9'
-        all: 'Всі'
         name: "І'мя"
       link:
         create_order: 'Створити замовлення'
@@ -104,6 +103,9 @@ en:
       start_date: 'Початкова дата'
       end_date: 'Кінцева дата'
       order_status: 'Статус оренди'
+      all: 'Всі'
+      ordered: 'Активні'
+      complited: 'Завершені'
 
     menu:
       items:

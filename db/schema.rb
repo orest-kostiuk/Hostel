@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_20_134126) do
+ActiveRecord::Schema.define(version: 2019_09_21_133133) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,16 @@ ActiveRecord::Schema.define(version: 2019_09_20_134126) do
     t.index ["tenant_id"], name: "index_balances_on_tenant_id"
   end
 
+  create_table "billments", force: :cascade do |t|
+    t.date "date_done"
+    t.bigint "month_id"
+    t.bigint "admin_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_user_id"], name: "index_billments_on_admin_user_id"
+    t.index ["month_id"], name: "index_billments_on_month_id"
+  end
+
   create_table "blocks", force: :cascade do |t|
     t.integer "floor_id"
     t.integer "number"
@@ -59,9 +69,25 @@ ActiveRecord::Schema.define(version: 2019_09_20_134126) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "credentials", force: :cascade do |t|
+    t.integer "name"
+    t.integer "int_value"
+    t.string "str_value"
+    t.bigint "admin_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_user_id"], name: "index_credentials_on_admin_user_id"
+  end
+
   create_table "floors", force: :cascade do |t|
     t.integer "side"
     t.integer "number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "months", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -75,12 +101,26 @@ ActiveRecord::Schema.define(version: 2019_09_20_134126) do
     t.index ["balance_id"], name: "index_payments_on_balance_id"
   end
 
+  create_table "ready_billings", force: :cascade do |t|
+    t.bigint "tenant_id"
+    t.bigint "balance_id"
+    t.bigint "billment_id"
+    t.integer "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["balance_id"], name: "index_ready_billings_on_balance_id"
+    t.index ["billment_id"], name: "index_ready_billings_on_billment_id"
+    t.index ["tenant_id"], name: "index_ready_billings_on_tenant_id"
+  end
+
   create_table "replenishments", force: :cascade do |t|
     t.bigint "balance_id"
     t.integer "amount"
     t.date "replenishment_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "month_id"
+    t.integer "billment_id"
     t.index ["balance_id"], name: "index_replenishments_on_balance_id"
   end
 

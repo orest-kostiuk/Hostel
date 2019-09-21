@@ -8,13 +8,9 @@
           .align-items
             .row
               .amount.col-sm-4.item
-                %strong ₴1000
+                %strong= @balance.amount
                 %br
                 Баланс
-              .credit.col-sm-4.item.text-danger
-                %strong ₴1000
-                %br
-                Заб-ість
               .total.col-sm-4.item
                 %strong ₴1000
                 %br
@@ -27,7 +23,7 @@
               .row.title.d-flex.align-items-center
                 .col-md-8
                   %b  Subject
-            - operations = @balance.payments + @balance.replenishments
+            - operations = @balance.payments + @balance.replenishments + @balance.ready_billings
             - operations.each do |o|
               .accordion#accordionNotifications{"data-index": o.id}
                 .content.collapsed.d-flex.align-items-center.hover{id: "collapsed-#{o.id}", "data-index": o.id, 'data-toggle': "collapse", 'data-target': "#collapse_#{o.id}", 'aria-expanded': false, 'aria-controls': "collapse"}
@@ -35,7 +31,8 @@
                     .row
                       .col-sm-8
                         %div{class: "align-self-start align-self-start-#{o.id}",style: 'text-overflow: ellipsis'}
-                          = o.is_a?(Payment) ? 'Поповнення' : 'Списання'
+                          - message =  o.is_a?(Payment) ? "З вашого балансу було списано ₴#{o.amount}" : (o.is_a?(ReadyBilling) ? "Вам було нараховано ₴#{o.amount} за #{o.billment.month.name}" : "Ваш баланс було поповненно на ₴#{o.amount}")
+                          = message.truncate(20)
                         .align-self-end.d-none{id: "notification-hide-#{o.id}"}
                           = raw('&nbsp;')
                         .align-self-end{id: "notification-text-#{o.id}"}
@@ -49,7 +46,7 @@
                       .row
                         .col-md-1
                         .col-md-8.full_text
-                          = "Ваш баланс було поповненно на #{o.amount}"
+                          = message
   - else
     .desktop
       .row
@@ -62,15 +59,12 @@
             .align-items
               .row
                 .amount.col-md-4.item
-                  %strong ₴1000
+                .amount.col-md-4.item
+                  %strong= "₴#{@balance.account_balance.round}"
                   %br
                   Баланс
-                .credit.col-md-4.item.text-danger
-                  %strong ₴1000
-                  %br
-                  Заборгованість
                 .total.col-md-4.item
-                  %strong ₴1000
+                  %strong= "₴#{@balance.total_to_pay.round}"
                   %br
                   До сплати
       .col-md-12
@@ -85,7 +79,7 @@
                   %b  Subject
                 .col-md-3
                   %b Date
-            - operations = @balance.payments + @balance.replenishments
+            - operations = @balance.payments + @balance.replenishments + @balance.ready_billings
             - operations.each do |o|
               .accordion#accordionNotifications{"data-index": o.id}
                 .content.collapsed.d-flex.align-items-center.hover{id: "collapsed-#{o.id}", "data-index": o.id, 'data-toggle': "collapse", 'data-target': "#collapse_#{o.id}", 'aria-expanded': false, 'aria-controls': "collapse"}
@@ -95,11 +89,12 @@
                         = image_tag 'notification_icon.svg', style: 'fill:#ccc;width:20px;'
                       .col-md-8
                         %div{class: "align-self-start align-self-start-#{o.id}",style: 'text-overflow: ellipsis'}
-                          = o.is_a?(Payment) ? 'Поповнення' : 'Списання'
+                          = o.is_a?(Payment) ? 'Списання з балансу' : (o.is_a?(ReadyBilling) ? "Нарахованя за #{o.billment.month.name}" : 'Повповнення балансу')
                         .align-self-end.d-none{id: "notification-hide-#{o.id}"}
                           = raw('&nbsp;')
                         .align-self-end{id: "notification-text-#{o.id}"}
-                          = 'Ваш баланс було поповненно'.truncate(20)
+                          - message =  o.is_a?(Payment) ? "З вашого балансу було списано ₴#{o.amount}" : (o.is_a?(ReadyBilling) ? "Вам було нараховано ₴#{o.amount} за #{o.billment.month.name}" : "Ваш баланс було поповненно на ₴#{o.amount}")
+                          = message.truncate(20)
                       .col-md-3
                         .date{'data-toggle': "popover", "data-trigger": "hover", "data-placement": "left", 'data-content': "#{(o.created_at).strftime('%b, %a %e, %Y at %I:%M%P')}"}
                           = distance_of_time_in_words(Time.now - o.created_at)
@@ -109,5 +104,4 @@
                       .row
                         .col-md-1
                         .col-md-8.full_text
-                          = "Ваш баланс було поповненно на #{o.amount}"
-
+                          = message

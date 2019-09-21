@@ -3,6 +3,8 @@
 ActiveAdmin.register AdminUser do
   permit_params :email, :password, :password_confirmation
 
+  menu label: I18n.t('active_admin.menu.items.admin_user')
+
   index title: 'АдмінКористувачі' do
     selectable_column
     id_column

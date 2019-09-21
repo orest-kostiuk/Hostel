@@ -74,6 +74,10 @@ en:
       created_at: 'Створено'
       updated_at: 'Оновлено'
 
+    balance:
+      account_balance: 'Баланс акаунту'
+      ordered_room: 'Винаймана кімната'
+
     blocks:
       small_room: 'Мала кімната'
       big_room: 'Велика кімната'
@@ -116,6 +120,7 @@ en:
         credential: 'Дані'
         month: 'Місяці'
         ready_billing: 'Виконані рахунки'
+        admin_user: 'АдмінКористувачі'
 
   devise:
     back: 'Назад'

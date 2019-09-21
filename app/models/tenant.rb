@@ -21,4 +21,13 @@ class Tenant < ApplicationRecord
   def balance_create
     create_balance unless balance
   end
+
+  def full_name_present?
+    !first_name.blank? && !last_name.blank? && !surname.blank?
+  end
+
+  def to_s
+    "Tenant ##{id}"
+  end
+
 end

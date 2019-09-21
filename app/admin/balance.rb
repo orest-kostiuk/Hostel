@@ -1,6 +1,5 @@
 ActiveAdmin.register Balance do
-  permit_params :side
-
+  actions :all, :except => :new
   menu label: I18n.t('active_admin.menu.items.balance')
 
   index :title => 'Баланси' do

@@ -35,3 +35,7 @@ floors.each do |f|
     end
   end
 end
+months = %w[Січень Лютий Березень Квітень Травень Червернь Липень Серпень Вересень Жовтень Листопад Грудень]
+months.each do |name|
+  Month.create(name: name)
+end

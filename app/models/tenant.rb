@@ -3,6 +3,7 @@ class Tenant < ApplicationRecord
   belongs_to :user
   has_many :tenant_orders
   has_many :rooms, through: :tenant_orders
+  has_many :ready_billing
   has_one :balance
   after_create :balance_create
 

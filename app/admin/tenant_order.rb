@@ -28,13 +28,13 @@ ActiveAdmin.register TenantOrder do
       room = o.room
       link_to "#{room.block.number} #{room.room_type == 'small' ? '2м' : '3м'}", admin_room_path(room)
     end
-    column :tenant do |o|
+    column t('active_admin.tenants.tenant') do |o|
       t = o.tenant
       link_to [t.last_name, t.first_name, t.surname].join(' '), admin_tenant_path(t)
     end
-    column :start_date
-    column :end_date
-    column :order_status
+    column t('active_admin.tenant_order.start_date')
+    column t('active_admin.tenant_order.end_date')
+    column t('active_admin.tenant_order.order_status'), :order_status
     actions
   end
 

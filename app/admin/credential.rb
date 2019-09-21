@@ -3,8 +3,11 @@
 ActiveAdmin.register Credential do
   permit_params :name, :int_value, :str_value, :admin_user_id
 
-  # menu label: I18n.t('active_admin.menu.items.balance')
-  #
+  menu label: I18n.t('active_admin.menu.items.credential')
+
+  index title: 'Дані' do
+  end
+
   form do |f|
     f.inputs do
       f.input :name

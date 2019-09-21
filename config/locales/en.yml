@@ -63,9 +63,16 @@ en:
         floor_8: 'Поверх №8'
         floor_9: 'Поверх №9'
         all: 'Всі'
+        name: "І'мя"
       link:
         create_order: 'Створити замовлення'
         generate_information: 'Згенерувати інформацію'
+
+    dashboard: 'Панель керування'
+
+    months:
+      created_at: 'Створено'
+      updated_at: 'Оновлено'
 
     blocks:
       small_room: 'Мала кімната'
@@ -85,8 +92,14 @@ en:
     tenants:
       tenant: 'Орендар'
       user: 'Користувач'
+      balance: 'Баланс'
       link:
         create_balance: 'Створити баланс'
+
+    tenant_order:
+      start_date: 'Початкова дата'
+      end_date: 'Кінцева дата'
+      order_status: 'Статус оренди'
 
     menu:
       items:
@@ -99,6 +112,10 @@ en:
         balance: 'Баланси'
         payment: 'Витрати'
         replenishment: 'Надходження'
+        billment: 'Рахунки'
+        credential: 'Дані'
+        month: 'Місяці'
+        ready_billing: 'Виконані рахунки'
 
   devise:
     back: 'Назад'

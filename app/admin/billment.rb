@@ -2,9 +2,12 @@
 
 ActiveAdmin.register Billment do
   actions :all, except: :new
-  # menu label: I18n.t('active_admin.menu.items.balance')
-  #
+  menu label: I18n.t('active_admin.menu.items.billment')
+
   member_action :generate_billing, method: :post do
+  end
+
+  index title: 'Рахунки' do
   end
 
   controller do

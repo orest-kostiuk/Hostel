@@ -20,14 +20,14 @@ ActiveAdmin.register Room do
       r = r.block
       link_to [r.floor.side == 'left' ? "Л" : 'П', r.number ].join('-'), admin_block_path(r)
     end
-    column t('active_admin.rooms.room_status')
+    column t('active_admin.rooms.room_status'), :room_status
     column t('active_admin.rooms.room_places') do |room|
       places = room.room_places
       places - room.tenant_orders.where(order_status: 'ordered').map { |o| o.count_places}.sum
     end
     column t('active_admin.rooms.ordres') do |room|
       tenants = room.tenant_orders.where(order_status: 'ordered').map { |o| o.tenant}
-      array =  tenants.map { |t| "<br>#{link_to [t.last_name, t.first_name, t.surname].join(' '), admin_tenant_path(t)} місць(#{t.tenant_orders.last.count_places})" }
+      array =  tenants.map { |t| "<br>#{link_to (t.full_name_present? ? [t.last_name, t.first_name, t.surname].join(' ') : t.to_s), admin_tenant_path(t)} місць(#{t.tenant_orders.last.count_places})" }
       array[0] = array[0].split('<br>').last if array[0]
       raw array.to_sentence
     end

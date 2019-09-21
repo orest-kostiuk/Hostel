@@ -34,6 +34,21 @@ ActiveAdmin.register User do
   form do |f|
     f.inputs do
       f.input :email
+      f.input :first_name
+      f.input :surname
+      f.input :last_name
+      f.input :index
+      f.input :region
+      f.input :district
+      f.input :city
+      f.input :street
+      f.input :house_number
+      f.input :passport_series
+      f.input :who_issued_the_passport
+      f.input :when_issued_the_passport
+      f.input :the_taxpayer_identification_number
+      f.input :phone_number
+      f.input :login_code
     end
     f.actions
   end
@@ -41,13 +56,22 @@ ActiveAdmin.register User do
   show do
     attributes_table do
       row :email
+      row :first_name
+      row :surname
+      row :last_name
+      row :index
+      row :region
+      row :district
+      row :city
+      row :street
+      row :house_number
+      row :passport_series
+      row :who_issued_the_passport
+      row :when_issued_the_passport
+      row :the_taxpayer_identification_number
+      row :phone_number
+      row :login_code
     end
-    # panel "Table of Contents" do
-    #   attributes_table_for user.tenant do
-    #     row :first_name
-    #     row :last_name
-    #   end
-    # end
   end
 
   action_item :view, only: :show, if: proc { !user.tenant } do

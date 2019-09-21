@@ -9,7 +9,7 @@ ActiveAdmin.register TenantOrder do
     Block.all.map { |b| ["#{b.floor.side == 'left' ? 'Л' : 'П'}-#{b.number}", b.id] }
   }
 
-  scope :all do
+  scope I18n.t('active_admin.user.column.all'), :all do
     TenantOrder.all
   end
 
@@ -17,7 +17,7 @@ ActiveAdmin.register TenantOrder do
     TenantOrder.where(order_status: 'ordered')
   end
 
-  scope :complited do
+  scope :completed do
     TenantOrder.where(order_status: 'complited')
   end
 

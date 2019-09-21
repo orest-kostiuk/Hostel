@@ -44,7 +44,6 @@ ActiveAdmin.register Room do
       row :room_status
       row :room_places
     end
-    active_admin_comments
   end
 
   filter :block, collection: lambda {

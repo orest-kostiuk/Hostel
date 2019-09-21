@@ -62,6 +62,7 @@ en:
         floor_7: 'Поверх №7'
         floor_8: 'Поверх №8'
         floor_9: 'Поверх №9'
+        all: 'Всі'
       link:
         create_order: 'Створити замовлення'
         generate_information: 'Згенерувати інформацію'

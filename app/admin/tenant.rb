@@ -80,6 +80,31 @@ ActiveAdmin.register Tenant do
       row :phone_number
       row :login_code
     end
+
+    panel "Payments" do
+
+    end
+
+    panel "Replenishment" do
+
+    end
+
+    panel "ReadyBilling" do
+      table_for tenant.ready_billing do
+        column :id
+        column :balance
+        column :amount
+        column :created_at
+      end
+    end
+
+    panel "Balance" do
+      table_for tenant.balance do
+        column :account_balance
+        column :created_at
+        column :updated_at
+      end
+    end
   end
 
   member_action :create_balance, method: :post do

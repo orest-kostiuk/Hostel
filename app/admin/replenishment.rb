@@ -6,6 +6,7 @@ ActiveAdmin.register Replenishment do
 
   index title: 'Надходження' do
   end
+
   form do |f|
     f.inputs do
       f.input :amount

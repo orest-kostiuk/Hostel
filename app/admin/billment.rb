@@ -29,7 +29,7 @@ ActiveAdmin.register Billment do
         column :tenant do |billment|
           if b = billment.tenant
             link_to (b.full_name_present? ? [b.last_name, b.first_name,
-                                                b.surname].join(' ') : b.tenant), admin_tenant_path(b)
+                                                b.surname].join(' ') : b.to_s), admin_tenant_path(b)
           end
         end
         column :balance

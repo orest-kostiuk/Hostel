@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register Room do
   permit_params :side
 
@@ -10,7 +12,7 @@ ActiveAdmin.register Room do
     Room.where(room_status: 'busy')
   end
 
-  index :title => 'Кімнати' do
+  index title: 'Кімнати' do
     selectable_column
     column :id
     column t('active_admin.rooms.room_type') do |room|
@@ -18,15 +20,15 @@ ActiveAdmin.register Room do
     end
     column t('active_admin.rooms.block') do |r|
       r = r.block
-      link_to [r.floor.side == 'left' ? "Л" : 'П', r.number ].join('-'), admin_block_path(r)
+      link_to [r.floor.side == 'left' ? 'Л' : 'П', r.number].join('-'), admin_block_path(r)
     end
     column t('active_admin.rooms.room_status'), :room_status
     column t('active_admin.rooms.room_places') do |room|
       places = room.room_places
-      places - room.tenant_orders.where(order_status: 'ordered').map { |o| o.count_places}.sum
+      places - room.tenant_orders.where(order_status: 'ordered').map(&:count_places).sum
     end
     column t('active_admin.rooms.ordres') do |room|
-      tenants = room.tenant_orders.where(order_status: 'ordered').map { |o| o.tenant}
+      tenants = room.tenant_orders.where(order_status: 'ordered').map(&:tenant)
       array =  tenants.map { |t| "<br>#{link_to (t.full_name_present? ? [t.last_name, t.first_name, t.surname].join(' ') : t.to_s), admin_tenant_path(t)} місць(#{t.tenant_orders.last.count_places})" }
       array[0] = array[0].split('<br>').last if array[0]
       raw array.to_sentence
@@ -36,17 +38,21 @@ ActiveAdmin.register Room do
 
   show do
     attributes_table do
-      row :tenants
+      row :tenants 
       row :room_type
-      row :block
+      row :block do |room|
+        if r = room.block
+          link_to r.number, admin_block_path(r)
+        end
+      end
+      row :floor
       row :room_status
       row :room_places
     end
-    active_admin_comments
   end
 
-  filter :block, collection: -> {
-    Block.all.map { |b| ["#{b.floor.side == 'left' ? "Л" : 'П'}-#{b.number}", b.id] }
+  filter :block, collection: lambda {
+    Block.all.map { |b| ["#{b.floor.side == 'left' ? 'Л' : 'П'}-#{b.number}", b.id] }
   }
 
   action_item :view, only: :show do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Balance < ApplicationRecord
   has_many :payments
   has_many :replenishments
@@ -10,5 +12,9 @@ class Balance < ApplicationRecord
     else
       ready_billings.map { |r_b| r_b.amount if r_b.amount > 0 }.sum
     end
+  end
+
+  def to_s
+    "Balance ##{id} ₴#{account_balance.round}"
   end
 end

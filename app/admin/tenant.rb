@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register Tenant do
   permit_params :first_name, :surname, :last_name, :index, :region, :district, :city, :street, :house_number,
                 :passport_series, :who_issued_the_passport, :when_issued_the_passport, :the_taxpayer_identification_number,
@@ -5,8 +7,7 @@ ActiveAdmin.register Tenant do
 
   menu label: I18n.t('active_admin.menu.items.tenant')
 
-
-  index :title => 'Орендарі' do
+  index title: 'Орендарі' do
     selectable_column
     column :id
     column t('active_admin.user.column.room') do |t|
@@ -25,7 +26,7 @@ ActiveAdmin.register Tenant do
     end
     column t('active_admin.tenants.balance') do |t|
       if balance = t.balance
-        link_to balance.account_balance, admin_balance_path(balance)
+        link_to balance.to_s, admin_balance_path(balance)
       end
     end
     actions
@@ -35,7 +36,6 @@ ActiveAdmin.register Tenant do
   filter :current_sign_in_at
   filter :sign_in_count
   filter :created_at
-
 
   form do |f|
     f.inputs do
@@ -80,20 +80,40 @@ ActiveAdmin.register Tenant do
       row :phone_number
       row :login_code
     end
+
+    panel "Payments" do
+
+    end
+
+    panel "Replenishment" do
+
+    end
+
+    panel "ReadyBilling" do
+      table_for tenant.ready_billing do
+        column :amount
+        column :created_at
+      end
+    end
+
+    panel "Balance" do
+      table_for tenant.balance do
+        column :account_balance
+        column :created_at
+        column :updated_at
+      end
+    end
   end
-
-
 
   member_action :create_balance, method: :post do
   end
 
   controller do
-
     def create_balance
       t = Tenant.find(params[:id])
       t.balance_create
       redirect_to admin_tenant_path t
-      flash[:notice] =  'Успішно створенно'
+      flash[:notice] = 'Успішно створенно'
     end
   end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddCountPlacesToRooms < ActiveRecord::Migration[5.2]
   def change
     add_column :rooms, :room_places, :integer

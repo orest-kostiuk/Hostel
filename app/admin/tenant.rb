@@ -26,7 +26,7 @@ ActiveAdmin.register Tenant do
     end
     column t('active_admin.tenants.balance') do |t|
       if balance = t.balance
-        link_to balance.account_balance, admin_balance_path(balance)
+        link_to balance.to_s, admin_balance_path(balance)
       end
     end
     actions
@@ -91,8 +91,6 @@ ActiveAdmin.register Tenant do
 
     panel "ReadyBilling" do
       table_for tenant.ready_billing do
-        column :id
-        column :balance
         column :amount
         column :created_at
       end

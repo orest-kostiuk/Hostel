@@ -13,4 +13,8 @@ class Balance < ApplicationRecord
       ready_billings.map { |r_b| r_b.amount if r_b.amount > 0 }.sum
     end
   end
+
+  def to_s
+    "Balance ##{id} ₴#{account_balance.round}"
+  end
 end

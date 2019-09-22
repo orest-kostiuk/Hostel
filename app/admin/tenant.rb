@@ -82,17 +82,35 @@ ActiveAdmin.register Tenant do
     end
 
     panel "Payments" do
-
+      table_for tenant.balance.payments do
+        column :amount
+        column :created_at
+        column :visit do |p|
+          link_to 'Переглянути', admin_payment_path(p)
+        end
+      end
     end
 
     panel "Replenishment" do
-
+      table_for tenant.balance.replenishments do
+        column :amount
+        column :created_at
+        column :visit do |r|
+          link_to 'Переглянути', admin_replenishment_path(r)
+        end
+      end
     end
 
     panel "ReadyBilling" do
       table_for tenant.ready_billing do
+        column :month do |r_b|
+          r_b.billment.month.name
+        end
         column :amount
         column :created_at
+        column :visit do |r_b|
+          link_to 'Переглянути', admin_ready_billing_path(r_b)
+        end
       end
     end
 
@@ -100,7 +118,9 @@ ActiveAdmin.register Tenant do
       table_for tenant.balance do
         column :account_balance
         column :created_at
-        column :updated_at
+        column :visit do |balance|
+          link_to 'Переглянути', admin_balance_path(balance)
+        end
       end
     end
   end

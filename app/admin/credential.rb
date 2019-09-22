@@ -6,6 +6,11 @@ ActiveAdmin.register Credential do
   menu label: I18n.t('active_admin.menu.items.credential')
 
   index title: 'Дані' do
+    column :id
+    column :name
+    column :int_value
+    column :str_value
+    actions
   end
 
   form do |f|

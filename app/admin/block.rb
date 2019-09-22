@@ -16,11 +16,11 @@ ActiveAdmin.register Block do
     end
     column t('active_admin.blocks.small_room') do |b|
       room = b.rooms.where(room_type: 'small').first
-      link_to "#{b.number} 2м", admin_room_path(room)
+      link_to "#{b.number} 2м (#{room.available? ? 'Доступна' : 'Не доступна'})", admin_room_path(room)
     end
     column t('active_admin.blocks.big_room') do |b|
       room = b.rooms.where(room_type: 'big').first
-      link_to "#{b.number} 3м", admin_room_path(room)
+      link_to "#{b.number} 3м (#{room.available? ? 'Доступна' : 'Не доступна'})", admin_room_path(room)
     end
     actions
   end
@@ -35,6 +35,28 @@ ActiveAdmin.register Block do
       row :number
       row :created_at
       row :updated_at
+    end
+    panel "Кімнати" do
+      table_for block.rooms do
+        column :id
+        column :status do |room|
+          room.available? ? 'Доступна' : 'Не доступна'
+        end
+        column :room_type do |room|
+          room.small? ? '2m' : '3m'
+        end
+        column :active_orders do |room|
+          tenants = room.tenant_orders.where(order_status: 'ordered').map(&:tenant)
+          array =  tenants.map { |t| "<br>#{link_to (t.full_name_present? ? [t.last_name,
+                                                                             t.first_name, t.surname].join(' ') : t.to_s),
+                                                    admin_tenant_path(t)} місць(#{t.tenant_orders.last.count_places})" }
+          array[0] = array[0].split('<br>').last if array[0]
+          raw array.to_sentence
+        end
+        column :visit do |room|
+          link_to 'Переглянути', admin_room_path(room)
+        end
+      end
     end
   end
 end

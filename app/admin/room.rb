@@ -38,16 +38,38 @@ ActiveAdmin.register Room do
 
   show do
     attributes_table do
-      row :tenants 
-      row :room_type
+      row :room_type do |room|
+        room.small? ? '2m' : '3m'
+      end
       row :block do |room|
         if r = room.block
           link_to r.number, admin_block_path(r)
         end
       end
-      row :floor
-      row :room_status
+      row :floor do |room|
+        link_to "#{room.block.floor.number} #{room.block.floor.side}", admin_floor_path(room.block.floor)
+      end
+      row :room_status do |room|
+        room.available? ? 'Доступна' : 'Не доступна'
+      end
       row :room_places
+    end
+
+    panel "Orders" do
+      table_for room.tenant_orders.ordered do
+        column :tenant do |tenant_order|
+          if t = tenant_order.tenant
+            link_to [t.first_name, t.surname, t.last_name].join(' '), admin_tenant_path(t)
+          end
+        end
+        column :start_date
+        column :end_date
+        column :order_status
+        column :created_at
+        column :visit do |p|
+          link_to 'Переглянути', admin_payment_path(p)
+        end
+      end
     end
   end
 

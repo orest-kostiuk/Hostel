@@ -11,9 +11,41 @@ ActiveAdmin.register Month do
  index title: 'Місяці' do
    selectable_column
    column :id
+   column :count_billments do |m|
+     m.billments.count
+   end
    column t('active_admin.user.column.name'), :name
    column t('active_admin.months.created_at'), :created_at
    column t('active_admin.months.updated_at'), :updated_at
    actions
  end
+
+  show do
+    panel "Оплати" do
+      table_for month.billments do
+        column :ready_billings do |b|
+          b.ready_billings.count
+        end
+        column :created_at
+        column :visit do |r|
+          link_to 'Переглянути', admin_replenishment_path(r)
+        end
+      end
+    end
+    panel "Виставлені рахунки" do
+      table_for month.billments.map { |b| b.ready_billings }.flatten do
+        column :amount
+        column :tenant do |ready_billing|
+          if u = ready_billing.tenant
+            link_to (u.full_name_present? ? [u.last_name, u.first_name,
+                                             u.surname].join(' ') : u.to_s), admin_tenant_path(u)
+          end
+        end
+        column :created_at
+        column :visit do |rb|
+          link_to 'Переглянути', admin_ready_billing_path(rb)
+        end
+      end
+    end
+  end
 end

@@ -10,6 +10,9 @@ ActiveAdmin.register Billment do
   index title: 'Рахунки' do
     column :id
     column :month
+    column :ready_billings do |billment|
+      billment.ready_billings.count
+    end
     column :created_at
     actions
   end
@@ -23,11 +26,11 @@ ActiveAdmin.register Billment do
   end
 
   show do
-    panel "Post Details" do
+    panel "Виставлені рахунки" do
       table_for billment.ready_billings do
         column :id
-        column :tenant do |billment|
-          if b = billment.tenant
+        column :tenant do |r_b|
+          if b = r_b.tenant
             link_to (b.full_name_present? ? [b.last_name, b.first_name,
                                                 b.surname].join(' ') : b.to_s), admin_tenant_path(b)
           end
@@ -35,6 +38,9 @@ ActiveAdmin.register Billment do
         column :balance
         column :amount
         column :created_at
+        column :visit do |r_b|
+          link_to 'Переглянути', admin_ready_billing_path(r_b)
+        end
       end
     end
   end

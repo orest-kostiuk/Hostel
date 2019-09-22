@@ -63,7 +63,7 @@ ActiveAdmin.register TenantOrder do
     attributes_table do
       row :room do |tenant_order|
         if r = tenant_order.room
-          link_to r.room_type, admin_room_path(r)
+          link_to r.to_s, admin_room_path(r)
         end
       end
       row :tenant do |tenant_order|

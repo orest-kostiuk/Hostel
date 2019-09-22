@@ -44,3 +44,5 @@ gem 'sendgrid-ruby'
 gem 'simple_form'
 gem 'tolk'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'carrierwave', '~> 2.0'
+gem 'mini_magick'

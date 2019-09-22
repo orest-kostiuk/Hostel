@@ -64,6 +64,12 @@
         = f.label t('devise.registrations.edit.phone_number')
         %br/
         = f.input_field :phone_number, disabled: current_user.completed?, class: 'form-control'
+      .form-group.col-md-4
+        = f.label :image
+        %br/
+        = f.file_field :image, disabled: current_user.completed?, class: 'form-control'
+        = image_tag ( @user.image_url(:thumb).to_s)
+        %br/
       .col-md-4
         = link_to t('devise.back'), root_path, class: 'btn btn-primary btn-lg btn-block'
       .col-md-8

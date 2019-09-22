@@ -6,6 +6,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable, :trackable
 
+  mount_uploader :image, ImageUploader
+
   enum account_status: %i[fresh completed]
 
   before_create :check_exists_tenant_information

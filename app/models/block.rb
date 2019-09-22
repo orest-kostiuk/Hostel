@@ -8,4 +8,8 @@ class Block < ApplicationRecord
     result = rooms.map(&:available?)
     result.include?(true)
   end
+
+  def to_s
+    "Block ##{id}"
+  end
 end

@@ -12,9 +12,23 @@ ActiveAdmin.register Payment do
                                               tenant.surname].join(' ') : tenant.to_s), admin_tenant_path(tenant)
       end
     end
-    column :amount
+    column :balance
+    column :amount do |pay|
+      link_to pay.amount, admin_payment_path(pay)
+    end
+    column :date_payed
     column :created_at
+    column :updated_at
     actions
+  end
+
+  form do |f|
+    f.inputs do
+      f.input :balance
+      f.input :amount
+      f.input :date_payed
+      f.actions
+    end
   end
 
   show do
@@ -26,7 +40,9 @@ ActiveAdmin.register Payment do
         end
       end
       row :amount
+      row :date_payed
       row :created_at
+      row :updated_at
     end
   end
 end

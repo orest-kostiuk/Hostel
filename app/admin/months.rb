@@ -28,7 +28,7 @@ ActiveAdmin.register Month do
         end
         column :created_at
         column :visit do
-          link_to 'Переглянути', admin_replenishment_path
+          link_to 'Переглянути', admin_billment_path
         end
       end
     end

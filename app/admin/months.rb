@@ -27,8 +27,8 @@ ActiveAdmin.register Month do
           b.ready_billings.count
         end
         column :created_at
-        column :visit do |r|
-          link_to 'Переглянути', admin_replenishment_path(r)
+        column :visit do
+          link_to 'Переглянути', admin_billment_path
         end
       end
     end

@@ -5,6 +5,12 @@ ActiveAdmin.register Replenishment do
   permit_params :replenishment_date, :amount, :balance_id
 
   index title: 'Надходження' do
+    column :amount
+    column :balance
+    column :replenishment_date
+    column :created_at
+    column :updated_at
+    actions
   end
 
   form do |f|
@@ -13,6 +19,16 @@ ActiveAdmin.register Replenishment do
       f.input :balance
       f.input :replenishment_date
       f.actions
+    end
+  end
+
+  show do
+    attributes_table do
+      row :amount
+      row :balance
+      row :replenishment_date
+      row :created_at
+      row :updated_at
     end
   end
 end

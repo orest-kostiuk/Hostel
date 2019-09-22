@@ -10,4 +10,8 @@ class Replenishment < ApplicationRecord
   def update_account_balance
     balance.update_column(:account_balance, balance.account_balance + amount)
   end
+
+  def to_s
+    "Replenishment ##{id}"
+  end
 end

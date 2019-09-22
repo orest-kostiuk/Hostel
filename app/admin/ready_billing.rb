@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register ReadyBilling do
+  permit_params :balance_id, :amount, :billment_id, :tenant_id
   menu label: I18n.t('active_admin.menu.items.ready_billing')
 
   index title: 'Виконані рахунки' do

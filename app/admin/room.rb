@@ -29,7 +29,7 @@ ActiveAdmin.register Room do
     end
     column t('active_admin.rooms.ordres') do |room|
       tenants = room.tenant_orders.where(order_status: 'ordered').map(&:tenant)
-      array =  tenants.map { |t| "<br>#{link_to (t.full_name_present? ? [t.last_name, t.first_name, t.surname].join(' ') : t.to_s), admin_tenant_path(t)} місць(#{t.tenant_orders.last.count_places})" }
+      array =  tenants.map { |t| "<br>#{link_to (t.full_name_present? ? [t.last_name, t.first_name, t.surname].join(' ') : t.to_s), admin_tenant_path(t)} місць(#{t.tenant_orders.last.count_places})" if t }
       array[0] = array[0].split('<br>').last if array[0]
       raw array.to_sentence
     end

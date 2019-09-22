@@ -9,8 +9,8 @@ ActiveAdmin.register User do
     selectable_column
     id_column
     column t('active_admin.user.column.email'), :email
-    column t('active_admin.user.column.current_sign_in_at')
-    column t('active_admin.user.column.sign_in_count')
+    column t('active_admin.user.column.current_sign_in_at'), :current_sign_in_at
+    column t('active_admin.user.column.sign_in_count'), :sign_in_count
     column t('active_admin.user.column.created_at'), :created_at
     actions
   end

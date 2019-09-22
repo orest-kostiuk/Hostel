@@ -38,9 +38,13 @@ ActiveAdmin.register Room do
 
   show do
     attributes_table do
-      row :tenants
+      row :tenants 
       row :room_type
-      row :block
+      row :block do |room|
+        if r = room.block
+          link_to r.number, admin_block_path(r)
+        end
+      end
       row :floor
       row :room_status
       row :room_places

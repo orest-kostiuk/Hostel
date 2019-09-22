@@ -2,7 +2,7 @@
 
 class Tenant < ApplicationRecord
   after_update :check_login_code
-  belongs_to :user
+  belongs_to :user, optional: true
   has_many :tenant_orders
   has_many :rooms, through: :tenant_orders
   has_many :ready_billing

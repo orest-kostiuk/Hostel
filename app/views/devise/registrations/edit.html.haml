@@ -5,6 +5,11 @@
   .col-md-12
     .row
       .form-group.col-md-4
+        = f.label :image
+        %br/
+        = f.file_field :image, disabled: current_user.completed?, class: 'form-control'
+        = image_tag url_for(current_user.image)
+      .form-group.col-md-4
         = f.label t('devise.registrations.edit.first_name')
         %br/
         = f.input_field :first_name, disabled: current_user.completed?, class: 'form-control'

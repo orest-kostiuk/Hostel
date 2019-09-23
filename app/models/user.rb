@@ -6,9 +6,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable, :trackable
 
-  has_one_attached :image
-
   enum account_status: %i[fresh completed]
+
+  has_one_attached :image
 
   before_create :check_exists_tenant_information
 

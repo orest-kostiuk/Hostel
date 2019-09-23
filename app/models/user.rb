@@ -6,7 +6,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable, :trackable
 
-  mount_uploader :image, ImageUploader
+  has_one_attached :image
 
   enum account_status: %i[fresh completed]
 

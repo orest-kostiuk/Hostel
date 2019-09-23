@@ -8,7 +8,7 @@
         = f.label :image
         %br/
         = f.file_field :image, disabled: current_user.completed?, class: 'form-control'
-        = image_tag ( @user.image_url(:middle).to_s)
+        = image_tag url_for(current_user.image)
       .form-group.col-md-4
         = f.label t('devise.registrations.edit.first_name')
         %br/

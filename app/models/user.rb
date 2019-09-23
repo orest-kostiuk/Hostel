@@ -8,13 +8,12 @@ class User < ApplicationRecord
 
   enum account_status: %i[fresh completed]
 
-  has_one_attached :image
-
   before_create :check_exists_tenant_information
 
   attr_accessor :login
 
   has_one :tenant
+  has_one_attached :image
 
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup

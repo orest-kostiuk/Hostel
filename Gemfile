@@ -44,4 +44,4 @@ gem 'sendgrid-ruby'
 gem 'simple_form'
 gem 'tolk'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-gem 'image_processing', '~> 1.2'
+gem "mini_magick"

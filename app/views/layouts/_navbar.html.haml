@@ -8,6 +8,7 @@
         = link_to t('layouts.navigation.list_payments'), balance_path(current_user.tenant.balance), class: 'nav-link' if current_user&.tenant&.balance
       .navbar-nav.ml-auto
         - if user_signed_in?
+          = image_tag current_user.image.variant(resize: '24x24')
           %li.nav-item.active
             - name = (current_user.first_name && current_user.surname ? "#{current_user.first_name} #{current_user.surname}" : current_user.email)
             = link_to name, edit_user_registration_path, class: 'nav-link'

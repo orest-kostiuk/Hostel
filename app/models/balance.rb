@@ -15,6 +15,7 @@ class Balance < ApplicationRecord
   end
 
   def to_s
-    "Balance ##{id} ₴#{account_balance.round}"
+    "Balance ##{id} ₴#{account_balance.round} #{tenant.full_name_present? ? [tenant.last_name, tenant.first_name,
+                                                                        tenant.surname].join(' ') : tenant.to_s}"
   end
 end

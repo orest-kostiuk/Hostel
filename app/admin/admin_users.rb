@@ -28,4 +28,26 @@ ActiveAdmin.register AdminUser do
     end
     f.actions
   end
+
+  member_action :generate_billing, method: :post do
+  end
+
+
+  controller do
+    def generate_billing
+      date = Date.today.at_beginning_of_month
+      month = Month.find(date.month)
+      count = GenerateBilling.new(month, current_admin_user).call
+      flash[:success] = "Успішно виставлені рахунки #{count}"
+      redirect_to admin_billment_path(current_admin_user.billments.last)
+    end
+  end
+
+  action_item :view, only: :show do
+    link_to "Виставити рахунки",
+            generate_billing_admin_admin_user_path, method: :post
+  end
+
+
+
 end

@@ -9,4 +9,8 @@ class Billment < ApplicationRecord
   def to_s
     "Billment ##{id}"
   end
+
+  def self.take_object(date)
+    all.map { |b| b if b.date_done.at_beginning_of_month == date}.first
+  end
 end

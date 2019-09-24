@@ -22,7 +22,9 @@ ActiveAdmin.register Room do
       r = r.block
       link_to [r.floor.side == 'left' ? 'Л' : 'П', r.number].join('-'), admin_block_path(r)
     end
-    column t('active_admin.rooms.room_status'), :room_status
+    column t('active_admin.rooms.room_status'), :room_status  do |room|
+      room.available? ? 'Доступна' : 'Не доступна'
+    end
     column t('active_admin.rooms.room_places') do |room|
       places = room.room_places
       places - room.tenant_orders.where(order_status: 'ordered').map(&:count_places).sum

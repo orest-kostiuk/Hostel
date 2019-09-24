@@ -35,6 +35,11 @@ ActiveAdmin.register Billment do
                                                 b.surname].join(' ') : b.to_s), admin_tenant_path(b)
           end
         end
+        column :room do |billment|
+          if room = billment.tenant.tenant_orders&.where(order_status: 'ordered')&.first&.room
+            link_to "#{room.block.number} #{room.room_type == 'small' ? '2м' : '3м'}", admin_room_path(room)
+          end
+        end
         column :balance
         column :amount
         column :created_at

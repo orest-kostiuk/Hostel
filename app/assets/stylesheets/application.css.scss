@@ -246,10 +246,18 @@ body {
 }
 
 img {
+  width: 100px;
+  height: 100px;
   border-radius: 50px;
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+.nav-item {
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
 }
 
 .btn.btn-primary.btn-lg.btn-block {
@@ -267,8 +275,7 @@ img {
 
 .nav-item.active {
   width: auto;
-  height: 24px;
-  border-radius: 50%;
+  height: 30px;
 }
 
 .nav-link {

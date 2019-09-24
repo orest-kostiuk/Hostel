@@ -3,6 +3,8 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  include MiniMagick
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable, :trackable
 
@@ -14,6 +16,7 @@ class User < ApplicationRecord
 
   has_one :tenant
   has_one_attached :image
+
 
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup

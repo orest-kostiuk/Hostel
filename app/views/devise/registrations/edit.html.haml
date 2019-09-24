@@ -12,6 +12,8 @@
       .form-group.col-md-4
         = f.label :image
         = f.file_field :image
+        - if current_user.image.attached?
+          = link_to 'Remove', delete_image_attachment_home_url(current_user.image.signed_id), method: :delete, data: { confirm: 'Are you sure?' }
         %br/
       .form-group.col-md-4
         = f.label t('devise.registrations.edit.first_name')

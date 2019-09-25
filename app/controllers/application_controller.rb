@@ -13,6 +13,6 @@ class ApplicationController < ActionController::Base
                                                                 region district city street house_number
                                                                 passport_series who_issued_the_passport
                                                                 when_issued_the_passport the_taxpayer_identification_number
-                                                                phone_number])
+                                                                phone_number image])
   end
 end

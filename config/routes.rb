@@ -7,4 +7,9 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations' }
   root to: 'home#index'
   resources :balances
+  resources :home do
+    member do
+      delete :delete_image_attachment
+    end
+  end
 end

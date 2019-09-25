@@ -5,6 +5,17 @@
   .col-md-12
     .row
       .form-group.col-md-4
+        - if current_user.image.attached?
+          = image_tag current_user.image.variant(resize: '100x100')
+        - else
+          = image_tag '/default_photo.jpg', resize: '100x100'
+      .form-group.col-md-4
+        = f.label :image
+        = f.file_field :image
+        - if current_user.image.attached?
+          = link_to 'Remove', delete_image_attachment_home_url(current_user.image.signed_id), method: :delete, data: { confirm: 'Are you sure?' }
+        %br/
+      .form-group.col-md-4
         = f.label t('devise.registrations.edit.first_name')
         %br/
         = f.input_field :first_name, disabled: current_user.completed?, class: 'form-control'

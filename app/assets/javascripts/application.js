@@ -68,3 +68,6 @@ $( document ).on('turbolinks:load', function() {
     item.hasClass('set-border') ? setTimeout(removeLine, 0) : setTimeout(removeLine, 300)
   });
 });
+$(document).on('click', '#accordion', function () {
+  $(this).find('.collapse').collapse('toggle');
+});

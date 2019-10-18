@@ -15,7 +15,7 @@
 @import "bootstrap";
 
 body {
-  background-color: #f0edf5;
+  background-color: #f1f1f1;
 }
 .desktop {
 
@@ -244,4 +244,12 @@ body {
     }
   }
 
+}
+.background {
+  background: #fff;
+  padding: 30px 30px 40px 30px;
+  margin: 20px 0px 20px 0px;
+ .vertical {
+   margin-top: 1%;
+ }
 }

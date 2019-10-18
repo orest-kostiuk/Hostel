@@ -1,3 +1,17 @@
-= t('hello')
-- @users.each do |u|
-  = u.email
+.posts
+  %h2.text-center Гуртожиток 2019
+  - @posts.order('created_at ASC').each do |post|
+    .background
+      .row
+        %h2.col-md-8= post.title
+        %p.col-md-4.text-right.vertical= "#{distance_of_time_in_words(Time.now - post.created_at)} ago"
+      %p= post.short_description
+      #accordion
+        .text
+          #headingThree
+            %h5.text-center
+              %button.btn.btn-link.collapsed{id: "collapsed-#{post.id}", "data-index": post.id, 'data-toggle': "collapse", 'data-target': "#collapse_#{post.id}", "data-toggle" => "collapse"}
+                Читати
+          #collapseThree.collapse{id: "collapse_#{post.id}", "aria-labelledby" => "headingThree", "data-parent" => "#accordion"}
+            .body
+              = raw post.body

@@ -47,7 +47,7 @@ uk:
       column:
         email: 'Електронна пошта'
         current_sign_in_at: 'Поточний вхід'
-        sign_in_count: 'Кількість користувачів'
+        sign_in_count: 'Кількість входів'
         created_at: 'Створено'
         number: 'Номер'
         side: 'Сторона'

@@ -24,9 +24,9 @@ ActiveAdmin.register Payment do
 
   form do |f|
     f.inputs do
-      f.input :balance
-      f.input :amount
-      f.input :date_payed
+      f.input :balance, label: 'Баланс'
+      f.input :amount, label: 'Сума'
+      f.input :date_payed, label: 'Дата витрати'
       f.actions
     end
   end

@@ -78,6 +78,8 @@ ActiveAdmin.register Room do
   filter :block, collection: lambda {
     Block.all.map { |b| ["#{b.floor.side == 'left' ? 'Л' : 'П'}-#{b.number}", b.id] }
   }
+  filter :room_status, collection: -> { Room.room_statuses }, as: :select
+  filter :room_type, collection: -> { Room.room_types }, as: :select
 
   action_item :view, only: :show do
     link_to t('active_admin.user.link.create_order'), new_admin_tenant_order_path(room_id: room.id), method: :get

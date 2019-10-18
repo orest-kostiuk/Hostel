@@ -32,27 +32,26 @@ ActiveAdmin.register Tenant do
     actions
   end
 
-  filter :email
-  filter :current_sign_in_at
-  filter :sign_in_count
-  filter :created_at
+  filter :id, label: "Повне ім\'я", as: :select, collection: -> {
+    Tenant.all.map { |t| [t.full_name, t.id] }
+  }
 
   form do |f|
     f.inputs do
-      f.input :first_name
-      f.input :surname
-      f.input :last_name
-      f.input :index
-      f.input :region
-      f.input :district
-      f.input :city
-      f.input :street
-      f.input :house_number
-      f.input :passport_series
-      f.input :who_issued_the_passport
-      f.input :when_issued_the_passport
-      f.input :the_taxpayer_identification_number
-      f.input :phone_number
+      f.input :first_name, label: "Ім'я"
+      f.input :surname, label: 'По батькові'
+      f.input :last_name, label: 'Прізвище'
+      f.input :index, label: 'Індекс'
+      f.input :region, label: 'Регіон'
+      f.input :district, label: 'Область'
+      f.input :city, label: 'Містро'
+      f.input :street, label: 'Вулиця'
+      f.input :house_number, label: 'Номер будинку'
+      f.input :passport_series, label: 'Серія паспорту'
+      f.input :who_issued_the_passport, label: 'Хто видав паспорт'
+      f.input :when_issued_the_passport, label: 'Коли видано паспорт'
+      f.input :the_taxpayer_identification_number, label: 'Номер платника податків'
+      f.input :phone_number, label: 'Номер телефону'
     end
     f.actions
   end

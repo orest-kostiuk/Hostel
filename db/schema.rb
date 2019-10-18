@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_21_133133) do
+ActiveRecord::Schema.define(version: 2019_10_17_190728) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,6 +101,16 @@ ActiveRecord::Schema.define(version: 2019_09_21_133133) do
     t.index ["balance_id"], name: "index_payments_on_balance_id"
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.string "title"
+    t.string "short_description"
+    t.text "body"
+    t.integer "admin_user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "is_published", default: false
+  end
+
   create_table "ready_billings", force: :cascade do |t|
     t.bigint "tenant_id"
     t.bigint "balance_id"
@@ -108,6 +118,7 @@ ActiveRecord::Schema.define(version: 2019_09_21_133133) do
     t.integer "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_paid", default: false
     t.index ["balance_id"], name: "index_ready_billings_on_balance_id"
     t.index ["billment_id"], name: "index_ready_billings_on_billment_id"
     t.index ["tenant_id"], name: "index_ready_billings_on_tenant_id"

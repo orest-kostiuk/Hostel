@@ -31,6 +31,10 @@ class Tenant < ApplicationRecord
     !first_name.blank? && !last_name.blank? && !surname.blank?
   end
 
+  def full_name
+    [first_name, last_name, surname].join(' ')
+  end
+
   def to_s
     "Tenant ##{id}"
   end

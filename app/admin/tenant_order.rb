@@ -8,16 +8,22 @@ ActiveAdmin.register TenantOrder do
   filter :block, collection: lambda {
     Block.all.map { |b| ["#{b.floor.side == 'left' ? 'Л' : 'П'}-#{b.number}", b.id] }
   }
+  filter :tenant_id, label: "Повне ім\'я", as: :select, collection: -> {
+    Tenant.all.map { |t| [t.full_name, t.id] }
+  }
+  filter :order_status, collection: -> { TenantOrder.order_statuses }, as: :select
+  filter :count_places, as: :select
 
-  scope I18n.t('active_admin.tenant_order.all'), :all do
+
+  scope :all do
     TenantOrder.all
   end
 
-  scope  I18n.t('active_admin.tenant_order.ordered') do
+  scope :ordered do
     TenantOrder.where(order_status: 'ordered')
   end
 
-  scope I18n.t('active_admin.tenant_order.complited') do
+  scope :complited do
     TenantOrder.where(order_status: 'complited')
   end
 
@@ -35,6 +41,7 @@ ActiveAdmin.register TenantOrder do
       end
     end
     column t('active_admin.tenant_order.start_date'), :start_date
+    column t('active_admin.tenant_order.count_places'), :count_places
     column t('active_admin.tenant_order.end_date'), :end_date
     column t('active_admin.tenant_order.order_status'), :order_status
     actions
@@ -42,11 +49,11 @@ ActiveAdmin.register TenantOrder do
 
   form do |f|
     f.inputs do
-      f.input :room, collection: Room.all.map { |r| [[r.block.floor.side == 'right' ? 'П' : 'Л', r.block.number, r.room_type == 'small' ? '2м' : '3м'].join('-'), r.id] unless r.busy? }
-      f.input :tenant, collection: Tenant.all.map { |t| [[t.last_name, t.first_name, t.surname, t.the_taxpayer_identification_number].join(' '), t.id] }
-      f.input :start_date
-      f.input :end_date
-      f.input :count_places
+      f.input :room, collection: Room.all.map { |r| [[r.block.floor.side == 'right' ? 'П' : 'Л', r.block.number, r.room_type == 'small' ? '2м' : '3м'].join('-'), r.id] unless r.busy? }, label: 'Кімната'
+      f.input :tenant, collection: Tenant.all.map { |t| [[t.last_name, t.first_name, t.surname, t.the_taxpayer_identification_number].join(' '), t.id] }, label: 'Орендар'
+      f.input :start_date, label: 'Початок оренди'
+      f.input :end_date, label: 'Кінець оренди'
+      f.input :count_places, label: 'Кількість місць'
     end
     f.actions
   end

@@ -6,8 +6,13 @@ class Replenishment < ApplicationRecord
   belongs_to :billment, optional: true
 
   after_create :update_account_balance
+  after_create :restore_account_balance
 
   def update_account_balance
+    balance.update_column(:account_balance, balance.account_balance + amount)
+  end
+
+  def restore_account_balance
     balance.update_column(:account_balance, balance.account_balance + amount)
   end
 

@@ -15,9 +15,9 @@ ActiveAdmin.register Replenishment do
 
   form do |f|
     f.inputs do
-      f.input :amount
-      f.input :balance
-      f.input :replenishment_date
+      f.input :amount, label: 'Сума'
+      f.input :balance, label: 'Баланс'
+      f.input :replenishment_date, label: 'День поповнення'
       f.actions
     end
   end

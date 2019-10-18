@@ -6,15 +6,11 @@
       .balance
         .content
           .align-items
-            .row
+            .row.text-center
               .amount.col-sm-4.item
-                %strong= @balance.amount
+                %strong= "#{@balance.account_balance.round}₴"
                 %br
                 Баланс
-              .total.col-sm-4.item
-                %strong ₴1000
-                %br
-                До сплати
       .col-md-12
         .operations-list
           %h1 Історія Балансу
@@ -24,7 +20,7 @@
                 .col-md-8
                   %b  Subject
             - operations = @balance.payments + @balance.replenishments + @balance.ready_billings
-            - operations.each do |o|
+            - operations.sort_by(&:created_at).reverse.each do |o|
               .accordion#accordionNotifications{"data-index": o.id}
                 .content.collapsed.d-flex.align-items-center.hover{id: "collapsed-#{o.id}", "data-index": o.id, 'data-toggle': "collapse", 'data-target': "#collapse_#{o.id}", 'aria-expanded': false, 'aria-controls': "collapse"}
                   .container
@@ -60,13 +56,10 @@
               .row
                 .amount.col-md-4.item
                 .amount.col-md-4.item
-                  %strong= "₴#{@balance.account_balance.round}"
+                .amount.col-md-4.item
+                  %strong{style: "color:#{@balance.account_balance < 0 ? 'red' : ''}"}= "#{@balance.account_balance.round}₴"
                   %br
                   Баланс
-                .total.col-md-4.item
-                  %strong= "₴#{@balance.total_to_pay.round}"
-                  %br
-                  До сплати
       .col-md-12
         .operations-list
           %h1 Історія Балансу
@@ -79,8 +72,8 @@
                   %b  Subject
                 .col-md-3
                   %b Date
-            - operations = @balance.payments + @balance.replenishments + @balance.ready_billings
-            - operations.each do |o|
+            - operations = @balance.replenishments + @balance.ready_billings + @balance.payments
+            - operations.sort_by(&:created_at).reverse.each do |o|
               .accordion#accordionNotifications{"data-index": o.id}
                 .content.collapsed.d-flex.align-items-center.hover{id: "collapsed-#{o.id}", "data-index": o.id, 'data-toggle': "collapse", 'data-target': "#collapse_#{o.id}", 'aria-expanded': false, 'aria-controls': "collapse"}
                   .container

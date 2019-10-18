@@ -15,9 +15,9 @@ ActiveAdmin.register Credential do
 
   form do |f|
     f.inputs do
-      f.input :name
-      f.input :int_value
-      f.input :str_value
+      f.input :name, label: "Ім'я"
+      f.input :int_value, label: 'Значення цифрою'
+      f.input :str_value, label: 'Значення буквами'
     end
     f.actions
   end

@@ -40,4 +40,13 @@ ActiveAdmin.register Balance do
       row :updated_at
     end
   end
+
+  form do |f|
+    f.inputs do
+      f.input :tenant, label: 'Орендар'
+      f.input :account_balance, label: 'Баланс'
+    end
+    f.actions
+  end
+
 end

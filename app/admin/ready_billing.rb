@@ -13,11 +13,11 @@ ActiveAdmin.register ReadyBilling do
                                            u.surname].join(' ') : u.to_s), admin_tenant_path(u)
       end
     end
-    column :balance
-    column :billment
-    column :amount
-    column :created_at
-    column :updated_at
+    column :balance, label: 'Баланс'
+    column :billment, label: 'Рахунок'
+    column :amount, label: 'Сума'
+    column :created_at, label: 'Створено'
+    column :updated_at, label: 'Оновлено'
     actions
   end
 end

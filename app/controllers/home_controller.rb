@@ -2,6 +2,6 @@
 
 class HomeController < ApplicationController
   def index
-    @users = User.all
+    @posts = Post.all.where(is_published: true)
   end
 end

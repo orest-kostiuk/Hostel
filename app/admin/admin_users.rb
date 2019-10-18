@@ -22,9 +22,9 @@ ActiveAdmin.register AdminUser do
 
   form do |f|
     f.inputs do
-      f.input :email
-      f.input :password
-      f.input :password_confirmation
+      f.input :email, label: 'Емейл'
+      f.input :password, label: 'Пароль'
+      f.input :password_confirmation, label: 'Повторити пароль'
     end
     f.actions
   end

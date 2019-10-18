@@ -47,7 +47,7 @@ en:
       column:
         email: 'Електронна пошта'
         current_sign_in_at: 'Поточний вхід'
-        sign_in_count: 'Кількість користувачів'
+        sign_in_count: 'Кількість входів'
         created_at: 'Створено'
         number: 'Номер'
         side: 'Сторона'
@@ -101,6 +101,7 @@ en:
 
     tenant_order:
       start_date: 'Початкова дата'
+      count_places: 'Кількість місць'
       end_date: 'Кінцева дата'
       order_status: 'Статус оренди'
       all: 'Всі'

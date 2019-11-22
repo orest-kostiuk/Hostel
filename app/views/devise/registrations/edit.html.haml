@@ -10,8 +10,7 @@
         - else
           = image_tag '/default_photo.jpg', resize: '100x100'
       .form-group.col-md-4
-        = f.label :image
-        = f.file_field :image
+        = f.input :image, as: :file
         - if current_user.image.attached?
           = link_to 'Remove', delete_image_attachment_home_url(current_user.image.signed_id), method: :delete, data: { confirm: 'Are you sure?' }
         %br/

@@ -1,3 +1,166 @@
-"uk":
-  "hello": >-
-    Привіт
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+uk:
+  hello: "Привіт,"
+
+  layouts:
+    application:
+      hostel: 'Гуртожиток'
+    navigation:
+      home: 'Домашня сторінка'
+      list_payments: 'Баланс'
+      logout: 'Вийти'
+      login: 'Увійти'
+      sign_up: 'Зареєструватись'
+
+  active_admin:
+    user:
+      column:
+        email: 'Електронна пошта'
+        current_sign_in_at: 'Поточний вхід'
+        sign_in_count: 'Кількість входів'
+        created_at: 'Створено'
+        number: 'Номер'
+        side: 'Сторона'
+        room: 'Кімната'
+        pay: 'Оплата'
+        floor_1: 'Поверх №1'
+        floor_2: 'Поверх №2'
+        floor_3: 'Поверх №3'
+        floor_4: 'Поверх №4'
+        floor_5: 'Поверх №5'
+        floor_6: 'Поверх №6'
+        floor_7: 'Поверх №7'
+        floor_8: 'Поверх №8'
+        floor_9: 'Поверх №9'
+        name: 'Назва'
+      link:
+        create_order: 'Створити замовлення'
+        generate_information: 'Згенерувати інформацію'
+
+    dashboard: 'Панель керування'
+
+    months:
+      created_at: 'Створено'
+      updated_at: 'Оновлено'
+
+    balance:
+      account_balance: 'Баланс акаунту'
+      ordered_room: 'Винаймана кімната'
+
+    blocks:
+      small_room: 'Мала кімната'
+      big_room: 'Велика кімната'
+
+    floors:
+      block: 'Блоки'
+
+    rooms:
+      room_type: 'Тип кімнати'
+      room_status: 'Статус кімнати'
+      room_places: 'Місця в кімнаті'
+      block: 'Блок'
+      ordres: 'Оренди'
+
+
+    tenants:
+      tenant: 'Орендар'
+      user: 'Користувач'
+      balance: 'Баланс'
+      link:
+        create_balance: 'Створити баланс'
+
+    tenant_order:
+      start_date: 'Початкова дата'
+      end_date: 'Кінцева дата'
+      order_status: 'Статус оренди'
+      all: 'Всі'
+      ordered: 'Активні'
+      complited: 'Завершені'
+
+    menu:
+      items:
+        block: 'Блоки'
+        floor: 'Поверхи'
+        room: 'Кімнати'
+        tenant: 'Орендарі'
+        tenant_order: 'Список оренд'
+        user: 'Користувачі'
+        balance: 'Баланси'
+        payment: 'Витрати'
+        replenishment: 'Надходження'
+        billment: 'Рахунки'
+        credential: 'Дані'
+        month: 'Місяці'
+        ready_billing: 'Згенеровані рахунки'
+        admin_user: 'АдмінКористувачі'
+
+  devise:
+    back: 'Назад'
+    email: 'Електронна пошта'
+    instructions_confirmation: 'Не отримали інструкції підтвердження?'
+
+    registrations:
+      edit:
+        first_name: "Ім'я"
+        surname: 'По-батькові'
+        last_name: 'Прізвище'
+        index: 'Поштовий індекс'
+        region: 'Область'
+        district: 'Район'
+        city: 'Місто/Село'
+        street: 'Вулиця'
+        house_number: 'Номер будинку'
+        passport_series: 'Серія паспорту'
+        who_issued_the_passport: 'Ким виданий паспорт'
+        when_issued_the_passport: 'Коли виданий паспорт'
+        the_taxpayer_identification_number: 'Ідентифікаційний номер'
+        phone_number: 'Номер телефону'
+        update: 'Оновити'
+
+      new:
+        sign_up: 'Зареєструватись'
+        login_code: 'Код входу'
+        password: 'Пароль'
+        password_confirmation: 'Повторіть пароль'
+
+    sessions:
+      new:
+        login: 'Увійти'
+        forgot_password: 'Забули пароль?'
+
+    confirmations:
+      new:
+        resend_confirmation_instructions: 'Повторити вказівки підтвердження'
+
+  admin_users:
+

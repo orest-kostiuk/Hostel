@@ -43,7 +43,7 @@
       .form-group.col-md-4
         = f.label t('devise.email')
         %br/
-        = f.email_field :email, disabled: current_user.completed?, autofocus: true, autocomplete: "email", class: 'form-control'
+        = f.email_field :email, disabled: true, autofocus: true, autocomplete: "email", class: 'form-control'
       .form-group.col-md-4
         = f.label t('devise.registrations.edit.passport_series')
         %br/

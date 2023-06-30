@@ -1,0 +1,100 @@
+- if @balance
+  - if browser.device.mobile?
+    .mobile
+      %h1.text-center
+        Твій баланс
+      .balance
+        .content
+          .align-items
+            .row.text-center
+              .amount.col-sm-4.item
+                %strong= "#{@balance.account_balance.round}₴"
+                %br
+                Баланс
+      .col-md-12
+        .operations-list
+          %h1 Історія Балансу
+          .table
+            .container
+              .row.title.d-flex.align-items-center
+                .col-md-8
+                  %b  Subject
+            - operations = @balance.payments + @balance.replenishments + @balance.ready_billings
+            - operations.sort_by(&:created_at).reverse.each do |o|
+              .accordion#accordionNotifications{"data-index": o.id}
+                .content.collapsed.d-flex.align-items-center.hover{id: "collapsed-#{o.id}", "data-index": o.id, 'data-toggle': "collapse", 'data-target': "#collapse_#{o.id}", 'aria-expanded': false, 'aria-controls': "collapse"}
+                  .container
+                    .row
+                      .col-sm-8
+                        %div{class: "align-self-start align-self-start-#{o.id}",style: 'text-overflow: ellipsis'}
+                          - message =  o.is_a?(Payment) ? "З вашого балансу було списано ₴#{o.amount}" : (o.is_a?(ReadyBilling) ? "Вам було нараховано ₴#{o.amount} за #{o.billment.month.name}" : "Ваш баланс було поповненно на ₴#{o.amount}")
+                          = message.truncate(20)
+                        .align-self-end.d-none{id: "notification-hide-#{o.id}"}
+                          = raw('&nbsp;')
+                        .align-self-end{id: "notification-text-#{o.id}"}
+                          = 'Ваш баланс було поповненно'.truncate(20)
+                      .col-sm-3
+                        .date{'data-toggle': "popover", "data-trigger": "hover", "data-placement": "left", 'data-content': "#{(o.created_at).strftime('%b, %a %e, %Y at %I:%M%P')}"}
+                          = distance_of_time_in_words(Time.now - o.created_at)
+                .collapse{id: "collapse_#{o.id}", 'data-parent': "#accordionNotifications"}
+                  .content-accordion.d-flex.align-items-center{id: "content-accordion_#{o.id}"}
+                    .container
+                      .row
+                        .col-md-1
+                        .col-md-8.full_text
+                          = message
+  - else
+    .desktop
+      .row
+        .col-md-6
+          .col-md-12
+            %h1.text-center.text-vertical
+              Твій баланс
+        .col-md-6.balance
+          .content
+            .align-items
+              .row
+                .amount.col-md-4.item
+                .amount.col-md-4.item
+                .amount.col-md-4.item
+                  %strong{style: "color:#{@balance.account_balance < 0 ? 'red' : ''}"}= "#{@balance.account_balance.round}₴"
+                  %br
+                  Баланс
+      .col-md-12
+        .operations-list
+          %h1 Історія Балансу
+          .table
+            .container
+              .row.title.d-flex.align-items-center
+                .col-md-1
+                  %b Type
+                .col-md-8
+                  %b  Subject
+                .col-md-3
+                  %b Date
+            - operations = @balance.replenishments + @balance.ready_billings + @balance.payments
+            - operations.sort_by(&:created_at).reverse.each do |o|
+              .accordion#accordionNotifications{"data-index": o.id}
+                .content.collapsed.d-flex.align-items-center.hover{id: "collapsed-#{o.id}", "data-index": o.id, 'data-toggle': "collapse", 'data-target': "#collapse_#{o.id}", 'aria-expanded': false, 'aria-controls': "collapse"}
+                  .container
+                    .row
+                      .col-md-1
+                        = image_tag 'notification_icon.svg', style: 'fill:#ccc;width:20px;'
+                      .col-md-8
+                        %div{class: "align-self-start align-self-start-#{o.id}",style: 'text-overflow: ellipsis'}
+                          = o.is_a?(Payment) ? 'Списання з балансу' : (o.is_a?(ReadyBilling) ? "Нарахованя за #{o.billment.month.name}" : 'Повповнення балансу')
+                        .align-self-end.d-none{id: "notification-hide-#{o.id}"}
+                          = raw('&nbsp;')
+                        .align-self-end{id: "notification-text-#{o.id}"}
+                          - message =  o.is_a?(Payment) ? "З вашого балансу було списано ₴#{o.amount}" : (o.is_a?(ReadyBilling) ? "Вам було нараховано ₴#{o.amount} за #{o.billment.month.name}" : "Ваш баланс було поповненно на ₴#{o.amount}")
+                          = message.truncate(20)
+                      .col-md-3
+                        .date{'data-toggle': "popover", "data-trigger": "hover", "data-placement": "left", 'data-content': "#{(o.created_at).strftime('%b, %a %e, %Y at %I:%M%P')}"}
+                          = distance_of_time_in_words(Time.now - o.created_at)
+                .collapse{id: "collapse_#{o.id}", 'data-parent': "#accordionNotifications"}
+                  .content-accordion.d-flex.align-items-center{id: "content-accordion_#{o.id}"}
+                    .container
+                      .row
+                        .col-md-1
+                        .col-md-8.full_text
+                          = message

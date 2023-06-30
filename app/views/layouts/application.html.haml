@@ -1,18 +1,25 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
     %title = t('layouts.application.hostel')
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
+    = render 'layouts/navbar'
     .container
-      = render 'layouts/navbar'
-      - if notice
-        %p.notice.alert-primary= notice
-      - if alert
-        %p.alert.alert-warning= alert
-      .flex-block{style: 'height:10vh'}
-      = yield
+      .col-md-12
+        - if notice
+          .alert.alert-primary.alert-dismissible.fade.show{:role => "alert"}
+            %strong= notice
+            %button.close{"aria-label" => "Close", "data-dismiss" => "alert", :type => "button"}
+              %span{"aria-hidden" => "true"} ×
+        - if alert
+          .alert.alert-warning.alert-dismissible.fade.show{:role => "alert"}
+            %strong= alert
+            %button.close{"aria-label" => "Close", "data-dismiss" => "alert", :type => "button"}
+              %span{"aria-hidden" => "true"} ×
+        .flex-block{style: 'height:5vh'}
+        = yield

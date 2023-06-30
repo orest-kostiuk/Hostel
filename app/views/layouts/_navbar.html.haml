@@ -1,20 +1,12 @@
-%nav.navbar.navbar-expand-lg.navbar-light.bg-light
-  #navbarSupportedContent.collapse.navbar-collapse
-    %ul.navbar-nav.mr-auto
-      %li.nav-item.active
-        %a.nav-link{:href => "#"}
-          = t('layouts.navigation.home')
-      %li.nav-item.active
-        %a.nav-link{:href => "#"}
-          = t('layouts.navigation.list_payments')
-      %li.nav-item.active
-        %a.nav-link{:href => "#"}
-          = t('layouts.navigation.home')
-      %li.nav-item.active
-        %a.nav-link{:href => "#"}
-          = t('layouts.navigation.home')
-    %form.form-inline.my-2.my-lg-0
-      %ul.navbar-nav.mr-auto
+.bs-example
+  %nav.navbar.navbar-expand-md.navbar-light.bg-light
+    = link_to 'Hostel', root_path, class: 'navbar-brand'
+    %button.navbar-toggler{"data-target" => "#navbarCollapse", "data-toggle" => "collapse", :type => "button"}
+      %span.navbar-toggler-icon
+    #navbarCollapse.collapse.navbar-collapse
+      .navbar-nav
+        = link_to t('layouts.navigation.list_payments'), balance_path(current_user.tenant.balance), class: 'nav-link' if current_user&.tenant&.balance
+      .navbar-nav.ml-auto
         - if user_signed_in?
           %li.nav-item.active
             - name = (current_user.first_name && current_user.surname ? "#{current_user.first_name} #{current_user.surname}" : current_user.email)
@@ -26,5 +18,3 @@
             = link_to t('layouts.navigation.login'), new_user_session_path, class: 'nav-link'
           %li.nav-item.active
             = link_to t('layouts.navigation.sign_up'), new_user_registration_path, class: 'nav-link'
-
-

@@ -37,7 +37,7 @@ en:
       hostel: 'Гуртожиток'
     navigation:
       home: 'Домашня сторінка'
-      list_payments: 'Список платежів'
+      list_payments: 'Баланс'
       logout: 'Вийти'
       login: 'Увійти'
       sign_up: 'Зареєструватись'
@@ -47,14 +47,35 @@ en:
       column:
         email: 'Електронна пошта'
         current_sign_in_at: 'Поточний вхід'
-        sign_in_count: 'Кількість користувачів'
+        sign_in_count: 'Кількість входів'
         created_at: 'Створено'
         number: 'Номер'
         side: 'Сторона'
         room: 'Кімната'
+        pay: 'Оплата'
+        floor_1: 'Поверх №1'
+        floor_2: 'Поверх №2'
+        floor_3: 'Поверх №3'
+        floor_4: 'Поверх №4'
+        floor_5: 'Поверх №5'
+        floor_6: 'Поверх №6'
+        floor_7: 'Поверх №7'
+        floor_8: 'Поверх №8'
+        floor_9: 'Поверх №9'
+        name: 'Назва'
       link:
         create_order: 'Створити замовлення'
         generate_information: 'Згенерувати інформацію'
+
+    dashboard: 'Панель керування'
+
+    months:
+      created_at: 'Створено'
+      updated_at: 'Оновлено'
+
+    balance:
+      account_balance: 'Баланс акаунту'
+      ordered_room: 'Винаймана кімната'
 
     blocks:
       small_room: 'Мала кімната'
@@ -74,6 +95,18 @@ en:
     tenants:
       tenant: 'Орендар'
       user: 'Користувач'
+      balance: 'Баланс'
+      link:
+        create_balance: 'Створити баланс'
+
+    tenant_order:
+      start_date: 'Початкова дата'
+      count_places: 'Кількість місць'
+      end_date: 'Кінцева дата'
+      order_status: 'Статус оренди'
+      all: 'Всі'
+      ordered: 'Активні'
+      complited: 'Завершені'
 
     menu:
       items:
@@ -83,6 +116,14 @@ en:
         tenant: 'Орендарі'
         tenant_order: 'Список оренд'
         user: 'Користувачі'
+        balance: 'Баланси'
+        payment: 'Витрати'
+        replenishment: 'Надходження'
+        billment: 'Рахунки'
+        credential: 'Дані'
+        month: 'Місяці'
+        ready_billing: 'Виконані рахунки'
+        admin_user: 'АдмінКористувачі'
 
   devise:
     back: 'Назад'

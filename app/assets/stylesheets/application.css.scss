@@ -13,3 +13,243 @@
  *= require_self
  */
 @import "bootstrap";
+
+body {
+  background-color: #f1f1f1;
+}
+.desktop {
+
+  .balance {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+  }
+  .text-vertical {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .balance {
+    .amount strong {
+      font-size: 35px;
+    }
+    .credit strong {
+      font-size: 35px;
+    }
+    .total strong {
+      font-size: 35px;
+    }
+    .item {
+      padding: 1.5rem;
+    }
+  }
+  .notification-icon {
+    position: relative;
+    display: block;
+    .notification_count{
+      position: absolute;
+      background-color: yellow;
+      line-height: 10px;
+      text-align: center;
+      border-radius: 7px;
+      text-decoration: none;
+      display: block;
+      top: 6px;
+      padding: 3px 5px;
+      font-weight: bold;
+      right: -6px;
+      font-size: 12px;
+    }
+  }
+  $table_border: #efefef;
+  .operations-list {
+    padding: 60px 115px;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    box-shadow: 0 15px 30px rgba(60, 44, 73, 0.08);
+    .table {
+      border-radius: 10px;
+      .title {
+        height: 30px;
+        background: #fff;
+        border-left: 2px solid $table_border;
+        border-right: 2px solid $table_border;
+        border-top: 2px solid $table_border;
+        border-radius: 10px 10px 0  0;
+      }
+      .content {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        background: white;
+        border-left: 2px solid $table_border;
+        border-right: 2px solid $table_border;
+        border-top: 2px solid $table_border;
+        .align-self-start {
+          width: 100%;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        &.set-border {
+          border-bottom: 2px solid $table_border;
+          border-radius: 0  0 10px 10px ;
+        }
+        &.no-read {
+          background: $table_border;
+        }
+      }
+      .align-items-center {
+        .full_text {
+          width: 100%;
+          white-space: normal;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          padding-bottom: 20px;
+        }
+      }
+      .content-accordion {
+        &.set-border {
+          border-bottom: 2px solid $table_border;
+          border-radius: 0  0 10px 10px;
+        }
+        background: white;
+        border-left: 2px solid $table_border;
+        border-right: 2px solid $table_border;
+      }
+    }
+  }
+  .accordion:hover {
+    .collapsed {
+      cursor: pointer;
+      background: #efefef;
+    }
+  }
+
+}
+
+.mobile {
+  .col-sm-4 {
+    width: unset;
+  }
+  .balance {
+    display: flex;
+    justify-content: center;
+    border-radius: 1
+  }
+  .text-vertical {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .balance {
+    .amount strong {
+      //font-size: 35px;
+    }
+    .credit strong {
+      //font-size: 35px;
+    }
+    .total strong {
+      //font-size: 35px;
+    }
+    .item {
+      //padding: 1.5rem;
+    }
+  }
+  .notification-icon {
+    position: relative;
+    display: block;
+    .notification_count{
+      position: absolute;
+      background-color: yellow;
+      line-height: 10px;
+      text-align: center;
+      border-radius: 7px;
+      text-decoration: none;
+      display: block;
+      top: 6px;
+      padding: 3px 5px;
+      font-weight: bold;
+      right: -6px;
+      font-size: 12px;
+    }
+  }
+  $table_border: #efefef;
+  .operations-list {
+    padding: 10px 10px;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    box-shadow: 0 15px 30px rgba(60, 44, 73, 0.08);
+    .table {
+      border-radius: 10px;
+      .title {
+        height: 30px;
+        background: #fff;
+        border-left: 2px solid $table_border;
+        border-right: 2px solid $table_border;
+        border-top: 2px solid $table_border;
+        border-radius: 10px 10px 0  0;
+      }
+      .content {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        background: white;
+        border-left: 2px solid $table_border;
+        border-right: 2px solid $table_border;
+        border-top: 2px solid $table_border;
+        .align-self-start {
+          width: 100%;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        &.set-border {
+          border-bottom: 2px solid $table_border;
+          border-radius: 0  0 10px 10px ;
+        }
+        &.no-read {
+          background: $table_border;
+        }
+      }
+      .align-items-center {
+        .full_text {
+          width: 100%;
+          white-space: normal;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          padding-bottom: 20px;
+        }
+      }
+      .content-accordion {
+        &.set-border {
+          border-bottom: 2px solid $table_border;
+          border-radius: 0  0 10px 10px;
+        }
+        background: white;
+        border-left: 2px solid $table_border;
+        border-right: 2px solid $table_border;
+      }
+    }
+  }
+  .accordion:hover {
+    .collapsed {
+      cursor: pointer;
+      background: #efefef;
+    }
+  }
+
+}
+.background {
+  background: #fff;
+  padding: 30px 30px 40px 30px;
+  margin: 20px 0px 20px 0px;
+ .vertical {
+   margin-top: 1%;
+ }
+}

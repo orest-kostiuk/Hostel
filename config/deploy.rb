@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'mina/rails'
 require 'mina/git'
 require 'mina/puma'
-require 'mina/rbenv'  # for rbenv support. (https://rbenv.org)
+require 'mina/rbenv' # for rbenv support. (https://rbenv.org)
 # require 'mina/rvm'    # for rvm support. (https://rvm.io)
 
 # Basic settings:
@@ -44,15 +46,15 @@ end
 # Put any custom commands you need to run at setup
 # All paths in `shared_dirs` and `shared_paths` will be created on their own.
 task :setup do
-  command %{sudo rbenv install 2.5.1 --skip-existing}
-  command %[sudo touch "#{fetch(:shared_path)}/config/database.yml"]
-  command %[sudo touch "#{fetch(:shared_path)}/config/secrets.yml"]
-  command %[sudo touch "#{fetch(:shared_path)}/config/puma.rb"]
-  command %[sudo touch "#{fetch(:shared_path)}/config/.env"]
+  command %(sudo rbenv install 2.5.1 --skip-existing)
+  command %(sudo touch "#{fetch(:shared_path)}/config/database.yml")
+  command %(sudo touch "#{fetch(:shared_path)}/config/secrets.yml")
+  command %(sudo touch "#{fetch(:shared_path)}/config/puma.rb")
+  command %(sudo touch "#{fetch(:shared_path)}/config/.env")
   comment "Be sure to edit '#{fetch(:shared_path)}/config/database.yml', 'secrets.yml' and puma.rb."
 end
 
-desc "Deploys the current version to the server."
+desc 'Deploys the current version to the server.'
 
 task :deploy do
   deploy do
@@ -61,7 +63,7 @@ task :deploy do
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
     invoke :'rails:db_migrate'
-    command %{#{fetch(:rails)} db:seed}
+    command %(#{fetch(:rails)} db:seed)
     invoke :'rails:assets_precompile'
     invoke :'deploy:cleanup'
 

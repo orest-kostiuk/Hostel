@@ -40,9 +40,7 @@ ActiveAdmin.register Room do
 
   show do
     attributes_table do
-      row :room_type do |room|
-        room.small? ? '2m' : '3m'
-      end
+      row :room_type
       row :block do |room|
         if r = room.block
           link_to r.number, admin_block_path(r)
@@ -52,7 +50,7 @@ ActiveAdmin.register Room do
         link_to "#{room.block.floor.number} #{room.block.floor.side}", admin_floor_path(room.block.floor)
       end
       row :room_status do |room|
-        room.available? ? 'Доступна' : 'Не доступна'
+        room.check_availability ? 'Доступна' : 'Не доступна'
       end
       row :room_places
     end

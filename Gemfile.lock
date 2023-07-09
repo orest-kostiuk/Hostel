@@ -1,4 +1,10 @@
 GIT
+  remote: https://github.com/orest-kostiuk/HalfLuxPlugin.git
+  revision: 174487f5bd49b5b68597603f3d7848e737051aaf
+  specs:
+    HalfLuxPlugin (0.1.0)
+
+GIT
   remote: https://github.com/untitledkingdom/mina-puma.git
   revision: 581a2048d82998328a5c9581a45883e0f3b28d06
   specs:
@@ -332,6 +338,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  HalfLuxPlugin!
   activeadmin
   activeadmin_addons
   activeadmin_quill_editor

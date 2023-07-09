@@ -45,3 +45,4 @@ gem 'simple_form'
 gem 'tolk'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'activeadmin_quill_editor'
+gem 'HalfLuxPlugin', git: 'https://github.com/orest-kostiuk/HalfLuxPlugin.git'

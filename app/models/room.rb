@@ -14,8 +14,6 @@ class Room < ApplicationRecord
   has_many :tenants, class_name: "Tenant", through: :tenant_orders
 
 
-
-
   def set_count_places
     self.room_places = room_type == 'small' ? 2 : 3
   end

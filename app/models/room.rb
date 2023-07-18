@@ -26,7 +26,7 @@ class Room < ApplicationRecord
 
   def include_plugin_module
     if room_type && room_type.plugin.present?
-      self.class.include("Plugins::#{room_type.plugin}".constantize)
+      self.class.include(PLUGINS[room_type.plugin])
     end
   end
 end

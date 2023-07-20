@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Room do
-  permit_params :side
+  permit_params :side, :block_id, :room_status, :room_places, :room_type
 
   menu label: I18n.t('active_admin.menu.items.room')
 
   scope :available do
-    Room.where(room_status: 'available')
+    Room.limit(2)
   end
   scope :busy do
-    Room.where(room_status: 'busy')
+    Room.limit(2)
   end
 
   index title: 'Кімнати' do
@@ -23,10 +23,10 @@ ActiveAdmin.register Room do
       link_to [r.floor.side == 'left' ? 'Л' : 'П', r.number].join('-'), admin_block_path(r)
     end
     column t('active_admin.rooms.room_status'), :room_status  do |room|
-      room.check_availability ? 'Доступна' : 'Не доступна'
+      room.available ? 'Доступна' : 'Не доступна'
     end
     column t('active_admin.rooms.room_places') do |room|
-      places = room.room_places
+      places = room.places
       places - room.tenant_orders.where(order_status: 'ordered').map(&:count_places).sum
     end
     column t('active_admin.rooms.ordres') do |room|
@@ -36,6 +36,16 @@ ActiveAdmin.register Room do
       raw array.to_sentence
     end
     actions
+  end
+
+  form do |f|
+    f.inputs do
+      f.input :block
+      f.input :room_status
+      f.input :room_places
+      f.input :room_type, as: :select, collection: PLUGINS.map { |k,v| k }
+      f.actions
+    end
   end
 
   show do
@@ -50,9 +60,10 @@ ActiveAdmin.register Room do
         link_to "#{room.block.floor.number} #{room.block.floor.side}", admin_floor_path(room.block.floor)
       end
       row :room_status do |room|
-        room.check_availability ? 'Доступна' : 'Не доступна'
+        room.available ? 'Доступна' : 'Не доступна'
       end
-      row :room_places
+      row :places
+      row :price
     end
 
     panel "Orders" do

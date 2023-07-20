@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_08_061711) do
+ActiveRecord::Schema.define(version: 2023_07_20_193641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -135,22 +135,11 @@ ActiveRecord::Schema.define(version: 2023_07_08_061711) do
     t.index ["balance_id"], name: "index_replenishments_on_balance_id"
   end
 
-  create_table "room_types", force: :cascade do |t|
-    t.string "name"
-    t.string "plugin"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "rooms", force: :cascade do |t|
     t.integer "block_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "room_status", default: 0
-    t.integer "room_places"
-    t.string "type"
-    t.bigint "room_type_id"
-    t.index ["room_type_id"], name: "index_rooms_on_room_type_id"
+    t.string "room_type"
   end
 
   create_table "tenant_orders", force: :cascade do |t|
@@ -249,5 +238,4 @@ ActiveRecord::Schema.define(version: 2023_07_08_061711) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "rooms", "room_types"
 end

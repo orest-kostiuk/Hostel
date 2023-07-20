@@ -6,13 +6,12 @@ module Plugins
       PLACE_COUNT
     end
 
-    def calculate_price
+    def price
       100
     end
 
-    def check_availability
-      self.tenants < PLACE_COUNT
+    def available
+      self.tenants.count < PLACE_COUNT
     end
   end
-
 end

@@ -16,7 +16,7 @@ ActiveAdmin.register Room do
     selectable_column
     column :id
     column t('active_admin.rooms.room_type') do |room|
-      room.room_type == 'small' ? '2 місний' : '3 місний'
+      room.room_type
     end
     column t('active_admin.rooms.block') do |r|
       r = r.block
@@ -43,7 +43,7 @@ ActiveAdmin.register Room do
       f.input :block
       f.input :room_status
       f.input :room_places
-      f.input :room_type, as: :select, collection: PLUGINS.map { |k,v| k }
+      f.input :room_type, as: :select, collection: RoomTypes::AVAILABLE_ROOMS
       f.actions
     end
   end

@@ -1,14 +1,14 @@
-module Plugins
-  module DoubleRoomPlugin
+module RoomTypes
+  module TripleRoom
 
-    PLACE_COUNT = 2
+    PLACE_COUNT = 3
 
     def places
       PLACE_COUNT
     end
 
     def price
-      150
+      200
     end
 
     def available

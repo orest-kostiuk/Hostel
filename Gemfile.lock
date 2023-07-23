@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/orest-kostiuk/HalfLuxPlugin.git
-  revision: 174487f5bd49b5b68597603f3d7848e737051aaf
+  revision: f29b63f636fd565b62e0c5037cf1b2f76ad1f687
   specs:
     HalfLuxPlugin (0.1.0)
 

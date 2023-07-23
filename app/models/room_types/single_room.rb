@@ -1,5 +1,5 @@
-module Plugins
-  module SingleRoomPlugin
+module RoomTypes
+  module SingleRoom
     PLACE_COUNT = 1
 
     def places

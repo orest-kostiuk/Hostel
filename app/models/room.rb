@@ -7,14 +7,19 @@ class Room < ApplicationRecord
   has_many :tenants, class_name: "Tenant", through: :tenant_orders
 
   def to_s
-    "#{available ? 'Вільна' : 'Зайнята'} #{PLACE_COUNT}"
+    "#{available ? 'Вільна' : 'Зайнята'} #{places}"
   end
 
   private
 
   def include_plugin_module
     unless room_type.blank?
-      self.class.include(PLUGINS[room_type])
+      module_name = "RoomTypes::#{room_type}"
+      if RoomTypes::AVAILABLE_ROOMS.map(&:to_s).include?(module_name)
+        self.extend(module_name.constantize)
+      else
+        raise "Room type #{room_type} is not supported"
+      end
     end
   end
 end

@@ -1,28 +1,4 @@
 {
-  "image": "mcr.microsoft.com/devcontainers/universal:2",
-  "hostRequirements": {
-    "cpus": 4
-  },
-  "waitFor": "onCreateCommand",
-  "updateContentCommand": ["rvm use ruby 2.5.1", "bundle install"],
-  "postCreateCommand": "",
-  "postAttachCommand": {
-    "ruby_version": "rvm use ruby 2.5.1",
-    "bundle install": "bundle install",
-    "server": "rails server"
-  },
-  "customizations": {
-    "codespaces": {
-      "openFiles": [
-        "app/views/hello/index.html.erb"
-      ]
-    }
-  },
-  "portsAttributes": {
-    "3000": {
-      "label": "Application",
-      "onAutoForward": "openPreview"
-    }
-  },
+  "dockerFile": "Dockerfile",
   "forwardPorts": [3000]
 }

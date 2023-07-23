@@ -1,14 +1,26 @@
 {
   "image": "mcr.microsoft.com/devcontainers/universal:2",
-  "features": {
-//     "ghcr.io/devcontainers/features/go:1": {
-//             "version": "1.18"
-//         },
-//         "ghcr.io/devcontainers/features/docker-in-docker:1": {
-//             "version": "latest",
-//             "moby": true
-//         },
-//         "ghcr.io/devcontainers/features/ruby:2.5.1": {},
-//         "ghcr.io/devcontainers-contrib/features/postgres-asdf:1": {}
-  }
+  "hostRequirements": {
+    "cpus": 4
+  },
+  "waitFor": "onCreateCommand",
+  "updateContentCommand": "bundle install",
+  "postCreateCommand": "",
+  "postAttachCommand": {
+    "server": "rails server"
+  },
+  "customizations": {
+    "codespaces": {
+      "openFiles": [
+        "app/views/hello/index.html.erb"
+      ]
+    }
+  },
+  "portsAttributes": {
+    "3000": {
+      "label": "Application",
+      "onAutoForward": "openPreview"
+    }
+  },
+  "forwardPorts": [3000]
 }

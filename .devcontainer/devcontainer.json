@@ -1,14 +1,14 @@
 {
   "image": "mcr.microsoft.com/devcontainers/universal:2",
   "features": {
-    "ghcr.io/devcontainers/features/go:1": {
-            "version": "1.18"
-        },
-        "ghcr.io/devcontainers/features/docker-in-docker:1": {
-            "version": "latest",
-            "moby": true
-        },
+//     "ghcr.io/devcontainers/features/go:1": {
+//             "version": "1.18"
+//         },
+//         "ghcr.io/devcontainers/features/docker-in-docker:1": {
+//             "version": "latest",
+//             "moby": true
+//         },
 //         "ghcr.io/devcontainers/features/ruby:2.5.1": {},
-        "ghcr.io/devcontainers-contrib/features/postgres-asdf:1": {}
+//         "ghcr.io/devcontainers-contrib/features/postgres-asdf:1": {}
   }
 }

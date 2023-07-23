@@ -7,6 +7,8 @@
   "updateContentCommand": ["rvm use ruby 2.5.1", "bundle install"],
   "postCreateCommand": "",
   "postAttachCommand": {
+    "ruby_version": "rvm use ruby 2.5.1",
+    "bundle install": "bundle install",
     "server": "rails server"
   },
   "customizations": {

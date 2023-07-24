@@ -1,16 +1,6 @@
-# Start from a base image
-FROM mcr.microsoft.com/devcontainers/universal:2
+FROM mcr.microsoft.com/vscode/devcontainers/base:ubuntu-22.04
 
-# Install dependencies
-RUN apt-get update && apt-get install -y curl gpg
-
-# Install RVM
-RUN \curl -sSL https://get.rvm.io | bash -s stable
-
-# Install Ruby 2.5.1
-RUN /bin/bash -l -c "rvm install 2.5.1"
-
-# Set Ruby 2.5.1 as the default
-RUN /bin/bash -l -c "rvm --default use 2.5.1"
-
-RUN /bin/bash -l -c "bundle install"
+# Adding the PostgreSQL repository so we can install postgresql-client v15
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+RUN curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor | tee /etc/apt/trusted.gpg.d/apt.postgresql.org.gpg >/dev/null
+RUN sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'

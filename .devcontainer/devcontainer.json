@@ -14,9 +14,9 @@
     "ghcr.io/devcontainers/features/ruby:1": {
       "version": "2.5.1"
     },
-    "ghcr.io/devcontainers/features/node:1": {
-      "version": 19
-    },
+//    "ghcr.io/devcontainers/features/node:1": {
+//      "version": 19
+//    },
     "ghcr.io/devcontainers/features/common-utils:2": {
       "username": "vscode",
       "userUid": 1000,

@@ -1,16 +1,8 @@
 {
-  "name": "Ruby 2.5.1",
-  "build": {
-    "dockerfile": "Dockerfile",
-    "context": "..",
-    "args": { "VARIANT": "2.5.1" }
-  },
-  "runArgs": [ "-u", "root" ],
   "settings": {
     "terminal.integrated.shell.linux": "/bin/bash"
   },
   "extensions": ["rebornix.ruby"],
   "forwardPorts": [3000],
   "postCreateCommand": "gem install bundler",
-  "workspaceFolder": "/workspace"
 }

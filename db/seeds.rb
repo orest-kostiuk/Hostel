@@ -44,3 +44,45 @@ unless Rails.env.production?
   end
 
 end
+
+10.times do |i|
+  User.find_or_create_by(email: "user#{i}@example.com") do |user|
+    user.password = 'password'
+    user.password_confirmation = 'password'
+    user.first_name = "First#{i}"
+    user.surname = "Surname#{i}"
+    user.last_name = "Last#{i}"
+    user.region = "Region#{i}"
+    user.district = "District#{i}"
+    user.city = "City#{i}"
+    user.street = "Street#{i}"
+    user.house_number = "#{i}"
+    user.passport_series = "Series#{i}"
+    user.who_issued_the_passport = "Issuer#{i}"
+    user.when_issued_the_passport = Date.today - i.years
+    user.the_taxpayer_identification_number = "TaxNumber#{i}"
+    user.phone_number = "PhoneNumber#{i}"
+    user.account_status = i % 2 # alternating between 0 and 1
+  end
+end
+
+
+10.times do |i|
+  Tenant.find_or_create_by(phone_number: "PhoneNumber#{i}") do |tenant|
+    tenant.first_name = "First#{i}"
+    tenant.surname = "Surname#{i}"
+    tenant.last_name = "Last#{i}"
+    tenant.index = "Index#{i}"
+    tenant.region = "Region#{i}"
+    tenant.district = "District#{i}"
+    tenant.city = "City#{i}"
+    tenant.street = "Street#{i}"
+    tenant.house_number = "#{i}"
+    tenant.passport_series = "Series#{i}"
+    tenant.who_issued_the_passport = "Issuer#{i}"
+    tenant.when_issued_the_passport = Date.today - i.years
+    tenant.the_taxpayer_identification_number = "TaxNumber#{i}"
+    tenant.login_code = "LoginCode#{i}"
+    tenant.user = User.find_by(email: "user#{i}@example.com") # assuming users are already created
+  end
+end

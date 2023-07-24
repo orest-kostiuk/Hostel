@@ -1,30 +1,12 @@
-version: "3"
-
+version: "3.2"
 services:
   app:
     build:
-      context: ..
-      dockerfile: .devcontainer/Dockerfile
+      context: .
+      dockerfile: Dockerfile
     volumes:
-      - ../..:/workspaces:cached
-    command: sleep infinity
-  postgres:
-    image: postgres:15-alpine
-    restart: unless-stopped
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
-    ports:
-      - 5433:5432
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_DB: postgres
-      POSTGRES_PASSWORD: postgres
-  redis:
-    image: redis:7-alpine
-    restart: unless-stopped
-    volumes:
-      - redis-data:/data
-
-volumes:
-  postgres-data:
-  redis-data:
+      - type: bind
+        source: .
+        target: /workspace
+    working_dir: /workspace
+    command: sh -c 'while true; do sleep 30; done'
